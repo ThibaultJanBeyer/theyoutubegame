@@ -4,9 +4,12 @@ class YouTubeHandler {
   }
 
   get randomQuery() {
-      const possible = 
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      return possible.charAt(Math.floor(Math.random() * possible.length));
+      // const possible = 
+      // 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      // return possible.charAt(Math.floor(Math.random() * possible.length));
+      const word = words[Math.floor(Math.random() * words.length)];
+      console.log(word)
+      return word;
   }
 
   get randomOrder() {
@@ -44,8 +47,8 @@ class YouTubeHandler {
       .catch(err => console.error(err));
   }
 
-  get randomInt() {
-    return Math.floor(Math.random() * 51); // The maximum is inclusive and the minimum is inclusive 
+  getRandomInt(max) {
+    return Math.floor(Math.random() * max); // The maximum is inclusive and the minimum is inclusive 
   }
 
   get yesNo() {
@@ -55,10 +58,10 @@ class YouTubeHandler {
   /**
    * Rolls for a random video.
    * pass region code to prevent blocked content.
-   * @param {string} regionCode ISO 3166-1 alpha-2 country code e.g. "DE"
-   * @param {string} relevanceLanguage ISO 639-1 two-letter language code
+   * @param {string} location ISO 3166-1 alpha-2 country code e.g. "DE"
+   * @param {string} language ISO 639-1 two-letter language code
    */
-  roll( regionCode, relevanceLanguage ) {
+  roll( location, language ) {
     return fetch(`https://www.googleapis.com/youtube/v3/search
       ?q=${this.randomQuery}
       &maxResults=50
@@ -68,18 +71,18 @@ class YouTubeHandler {
       &order=${this.randomOrder}
       &type=video
       &part=snippet
-      ${regionCode ?
-        `&regionCode=${regionCode}`
+      ${location ?
+        `&regionCode=${location}`
       : ''}
-      ${relevanceLanguage ?
-        `&relevanceLanguage=${relevanceLanguage}`
+      ${language ?
+        `&relevanceLanguage=${language}`
       : ''}
       &key=${this.key}
       `.replace(/\s/g, ''))
     .then(resp => resp.json())
     .then(resp => {
       if(resp.items)
-        return resp.items[this.randomInt];
+        return resp.items[this.getRandomInt(resp.items.length)];
       else
         throw resp;
     })

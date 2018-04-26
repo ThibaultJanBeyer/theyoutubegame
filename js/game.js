@@ -1,23 +1,32 @@
 class Game {
   constructor( node ) {
     this.node = node;
+    this.firstRoll = false;
 
     this.startNode = this.node.querySelector('.js-game-start');
     this.videoNode = this.node.querySelector('.js-game-video');
 
     this.viewsNode = this.node.querySelector('.js-game-views');
-
     this.addEventListeners();
   }
 
   addEventListeners() {
-    this.startNode.addEventListener('click', () => this.startUp());
+    this.startNode.addEventListener('click', () => this.startHandler());
+    topic.subscribe('game/start', () => this.startUp());
+  }
+
+  startHandler() {
+    if(this.firstRoll) {
+      topic.publish('configuration/init');
+      this.firstRoll = true;
+    } else {
+      this.startUp();
+    }
   }
 
   async startUp() {
 
-    const location = await youTubeHandler.userRegion;
-    const videoID = await youTubeHandler.roll(location, 'EN');
+    const videoID = await youTubeHandler.roll(gameStore.location, gameStore.language);
     this.drawVideo(videoID);
     this.drawInfo(videoID);
 
@@ -25,7 +34,7 @@ class Game {
 
   drawVideo(videoID) {
     this.videoNode.innerHTML = `
-      <iframe width="420" height="315" frameborder="0"
+      <iframe width="600" height="500" frameborder="0"
         src="${`
           https://www.youtube.com/embed/${videoID}
             ?autoplay=1
