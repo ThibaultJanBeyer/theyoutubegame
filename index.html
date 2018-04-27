@@ -6,27 +6,45 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>The youtube game</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-  <script src="js/stores/gameStore.js" async></script>
-  <script src="js/tools/A11YDialog.js" async></script>
-  <script src="js/tools/help.js" async></script>
-  <script src="js/tools/topic.js" async></script>
+
+  <script src="js/model/BaseStore.js" async></script>
+  <script src="js/model/BaseEntity.js" async></script>
+
+  <script src="js/utils/A11YDialog.js" async></script>
+  <script src="js/utils/help.js" async></script>
+  <script src="js/utils/topic.js" async></script>
+  <script src="js/utils/words.js" async></script>
+
+  <script src="js/api/gameStore.js" async></script>
+  <script src="js/api/Player.js" async></script>
+  <script src="js/api/playerStore.js" async></script>
+
+  <script src="js/controller/configurationDialog.js" async></script>
+  <script src="js/controller/youTubeHandler.js" async></script>
+  <script src="js/controller/scoreboard.js" async></script>
+
   <script src="js/game.js" async></script>
-  <script src="js/words.js" async></script>
-  <script src="js/configurationDialog.js" async></script>
-  <script src="js/youTubeHandler.js" async></script>
 </head>
 <body>
-  <h1>
-    The Youtube Game
-  </h1>
-  <div class="video">
-    <div class="video__container js-game-video">
+  <main class="js-game">
+
+    <h1>
+      The Youtube Game
+    </h1>
+
+    <div class="video">
+      <div class="video__container js-game-video">
+      </div>
+      <div class="video__views js-game-views">
+      </div>
     </div>
-    <div class="video__views js-game-views">
-    </div>
-  </div>
-  <button class="button js-game-start">
-    Roll
-  </button>
+
+    <div class="scoreboard js-game-scoreboard"></div>
+
+    <button class="button js-game-start">
+      Roll
+    </button>
+
+  </main>
 </body>
 </html>

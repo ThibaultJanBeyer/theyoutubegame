@@ -1,12 +1,12 @@
 class Game {
   constructor( node ) {
     this.node = node;
-    this.firstRoll = false;
+    this.firstRoll = true;
 
     this.startNode = this.node.querySelector('.js-game-start');
     this.videoNode = this.node.querySelector('.js-game-video');
-
     this.viewsNode = this.node.querySelector('.js-game-views');
+
     this.addEventListeners();
   }
 
@@ -34,13 +34,13 @@ class Game {
 
   drawVideo(videoID) {
     this.videoNode.innerHTML = `
-      <iframe width="600" height="500" frameborder="0"
+      <iframe width="100%" height="500" frameborder="0"
         src="${`
           https://www.youtube.com/embed/${videoID}
             ?autoplay=1
-            &controls=0
+            ${!gameStore.ytControls ? '&controls=0' : ''}
             &rel=0
-            &showinfo=0
+            ${!gameStore.ytTitle ? '&showinfo=0' : ''}
         `.replace(/\s/g, '')}"
       ></iframe>`;
   }

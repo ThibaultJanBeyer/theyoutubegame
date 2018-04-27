@@ -34,6 +34,18 @@ class ConfigurationDialog {
           title="add">
           +
         </button>
+
+        <h2>YouTube Settings</h2>
+        <label>
+          <input class="js-config-yt-title"
+            type="checkbox">
+          Show video titles
+        </label>
+        <label>
+          <input class="js-config-yt-controls"
+            type="checkbox">
+          Enable youtube controls
+        </label>
       `,
       onAccept: this.onAccept.bind(this)
     });
@@ -44,6 +56,10 @@ class ConfigurationDialog {
   }
 
   setupDialog() {
+    this.setupPlayers();
+  }
+
+  setupPlayers() {
     this.dialog.nodes.add = this.dialog.nodes.base
       .querySelector('.js-config-player-add');
     
@@ -91,20 +107,32 @@ class ConfigurationDialog {
     gameStore.location = await youTubeHandler.userRegion;
   }
 
-  onAccept() {
+  parseYTSettings() {
+    gameStore.ytTitle = this.dialog.nodes.base
+      .querySelector('.js-config-yt-title').checked;
+
+    gameStore.ytControls = this.dialog.nodes.base
+      .querySelector('.js-config-yt-controls').checked;
+  }
+
+  parsePlayers() {
+    playerStore.players = [];
 
     this.playerEls = this.dialog.nodes.container
       .querySelectorAll('.js-config-players-el');
     this.playerEls.forEach(playerEl => {
-      gameStore.players.push({
-        id: help.uuidv4(),
+      playerStore.addPlayer({
         name: playerEl.querySelector('.js-config-player-name').value,
         color: playerEl.querySelector('.js-config-player-color').value
       })
     })
 
-    topic.publish('game/start')
+  }
 
+  onAccept() {
+    this.parsePlayers();
+    this.parseYTSettings();
+    topic.publish('game/start')
   }
 }
 
