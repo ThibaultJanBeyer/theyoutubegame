@@ -7,7 +7,9 @@ class Scoreboard {
   setup() {
     this.n.scoreboard = document.querySelector('.js-game-scoreboard');
     topic.subscribe('game/start', () => this.draw());
-    topic.subscribe('playerStore/player/update', () => this.drawPlayers());
+    topic.subscribe('playerStore/player/update', (topic, args) => {
+      this.refreshPlayer(args)
+    });
   }
 
   draw() {
@@ -54,6 +56,24 @@ class Scoreboard {
         </tr>
       `;
     });
+
+    playerStore.players.forEach(player => {
+      this.n.players.querySelector(`tr[data-id="${player.id}"] .guess input`)
+        .addEventListener('change', e => {
+          player.guess = e.target.value
+        });
+    });
+  }
+
+  // @todo: rewrite this beast
+  refreshPlayer(args) {
+    if(args.property === 'score') {
+      this.n.players.querySelector(`tr[data-id="${args.id}"] .${args.property}`)
+        .innerHTML = args.value;
+    } else if(args.property === 'guess') {
+      this.n.players.querySelector(`tr[data-id="${args.id}"] .${args.property} input`)
+        .value = args.value;
+    }
   }
 
 }

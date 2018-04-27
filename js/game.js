@@ -18,7 +18,7 @@ class Game {
   startHandler() {
     if(this.firstRoll) {
       topic.publish('configuration/init');
-      this.firstRoll = true;
+      this.firstRoll = false;
     } else {
       this.startUp();
     }
@@ -58,9 +58,36 @@ class Game {
 
   async showViews(videoID) {
     const stats = await youTubeHandler.getVideoStats(videoID);
+    const views = stats.viewCount*1;
     this.viewsNode.innerHTML = `
-      Views: ${(stats.viewCount*1).toLocaleString()}
+      Views: ${views.toLocaleString()}
     `;
+    this.calculateScores(views);
+  }
+
+  calculateScores(views) {
+    const nearest = playerStore.players.sort(function(a, b){
+      return Math.abs(views - a.guess) - Math.abs(views - b.guess);
+    });
+
+    this.viewsNode.innerHTML += `
+      <div>
+        Scores: ${nearest.map((n, i) => {
+          return `${i+1}. ${n.name} (${n.guess}) +${Math.floor(100 / (i+1))}`
+        }).join(' | ')}
+      </div>
+    `;
+
+    nearest.forEach((n, i) => {
+      // n.guess = 0;
+      // n.score += Math.floor(100 / (i+1));
+      playerStore.players.forEach(player => {
+        if(player.id === n.id) {
+          player.guess = 0;
+          player.score += Math.floor(100 / (i+1));
+        }
+      })
+    });
   }
 
 }
