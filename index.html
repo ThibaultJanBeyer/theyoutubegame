@@ -10,8 +10,12 @@
     // ugly re-routing for https on github pages
     // @todo: remove once we have our own serverz
     if(
-      location.protocol.indexOf('https') < 0 &&
-      location.protocol.indexOf('file://') < 0
+      !location.protocol.indexOf('https') > -1 &&
+      !location.protocol.indexOf('file') > -1 &&
+      !(
+        location.protocol.indexOf('http') > -1 &&
+        location.hostname.indexOf('localhost')
+      )
     ) {
       location = `https://${location.hostname}${location.pathname}${location.search}`;
     }
@@ -41,7 +45,7 @@
   <main class="js-game">
 
     <h1>
-      The Youtube Game
+      The Youtube Game .net
     </h1>
 
     <div class="scoreboard js-game-scoreboard"></div>
