@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>The youtube game</title>
+
+  <script>
+    // ugly re-routing for https on github pages
+    // @todo: remove once we have our own serverz
+    if(
+      location.protocol.indexOf('https') < 0 &&
+      location.protocol.indexOf('file://') < 0
+    ) {
+      location = `https://${location.hostname}${location.pathname}${location.search}`;
+    }
+  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
   <script src="js/model/BaseStore.js" async></script>
