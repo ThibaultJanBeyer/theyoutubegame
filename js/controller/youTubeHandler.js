@@ -45,9 +45,9 @@ class YouTubeHandler {
   }
 
   get userRegion() {
-    return fetch('http://ip-api.com/json')
+    return fetch('https://geoip-db.com/json')
       .then(resp => resp.json())
-      .then(resp => resp.countryCode)
+      .then(resp => resp['country_code'])
       .catch(err => console.error(err));
   }
 
@@ -70,6 +70,7 @@ class YouTubeHandler {
    * @param {string} language ISO 639-1 two-letter language code
    */
   roll( location, language ) {
+    console.log('l:', location, 'la:', language);
     return fetch(`https://www.googleapis.com/youtube/v3/search
       ?q=${this.randomQuery}
       &maxResults=50
