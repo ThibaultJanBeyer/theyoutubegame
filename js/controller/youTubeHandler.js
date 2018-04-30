@@ -8,7 +8,7 @@ class YouTubeHandler {
       // 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       // return possible.charAt(Math.floor(Math.random() * possible.length));
       const word = words[Math.floor(Math.random() * words.length)];
-      console.log(word)
+      console.info('q:', word);
       return word;
   }
 
@@ -21,23 +21,27 @@ class YouTubeHandler {
       'videoCount',
       'viewCount'
     ];
-    return possible[Math.floor(Math.random() * possible.length)];
+    const order = possible[Math.floor(Math.random() * possible.length)];
+    console.info('o:', order);
+    return order;
   }
 
-  get randomTimeOrder() {
-    return Math.random() > 0.5 ? 'publishedAfter' : 'publishedBefore';
+  get randomDateOrder() {
+    const time = Math.random() > 0.5 ? 'publishedAfter' : 'publishedBefore';
+    console.info('do:', time);
+    return time;
   }
 
-  get randomTime() {
+  get randomDate() {
     function randomDate(start, end) {
       return new Date(
         start.getTime() + Math.random() * 
         (end.getTime() - start.getTime())
       );
     }
-
-    return randomDate(new Date(2006, 0, 1), new Date())
-      .toISOString();
+    const date = randomDate(new Date(2006, 0, 1), new Date());
+    console.info('d:', date);
+    return date.toISOString();
   }
 
   get userRegion() {
@@ -48,11 +52,15 @@ class YouTubeHandler {
   }
 
   getRandomInt(max) {
-    return Math.floor(Math.random() * max); // The maximum is inclusive and the minimum is inclusive 
+    const i = Math.floor(Math.random() * max); // The maximum is inclusive and the minimum is inclusive 
+    console.info('i:', i);
+    return i;
   }
 
   get yesNo() {
-    return Math.random() > 0.5;
+    const b = Math.random() > 0.5;
+    console.info('b:', b);
+    return b;
   }
 
   /**
@@ -66,7 +74,7 @@ class YouTubeHandler {
       ?q=${this.randomQuery}
       &maxResults=50
       &${this.yesNo ? 
-        `${this.randomTimeOrder}=${this.randomTime}`
+        `${this.randomDateOrder}=${this.randomDate}`
       : ''}
       &order=${this.randomOrder}
       &type=video

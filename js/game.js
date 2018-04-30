@@ -73,7 +73,11 @@ class Game {
     this.viewsNode.innerHTML += `
       <div>
         Scores: ${nearest.map((n, i) => {
-          return `${i+1}. ${n.name} (${n.guess}) +${Math.floor(100 / (i+1))}`
+          return `
+            ${i+1}. ${n.name}
+            (${(n.guess*1).toLocaleString()})
+            +${Math.floor(100 / (i+1))}
+          `;
         }).join(' | ')}
       </div>
     `;
@@ -86,7 +90,7 @@ class Game {
           player.guess = 0;
           player.score += Math.floor(100 / (i+1));
         }
-      })
+      });
     });
   }
 

@@ -52,7 +52,7 @@ class Scoreboard {
             <input
               onFocus="this.select();"
               type="number"
-              value="${(player.guess*1).toLocaleString()}">
+              value="${player.guess}">
           </td>
         </tr>
       `;
