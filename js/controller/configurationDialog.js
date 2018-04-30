@@ -50,13 +50,19 @@ class ConfigurationDialog {
       onAccept: this.onAccept.bind(this)
     });
 
-    this.setupDialog();
+    this.postCreate();
 
     return this.dialog;
   }
 
-  setupDialog() {
+  postCreate() {
     this.setupPlayers();
+    this.dialog.nodes.base
+      .querySelectorAll('input:not(.js-config-player-color)')
+      .forEach(input => {
+        input.addEventListener('keydown', e => help.keyNextHandler(e));
+        input.addEventListener('focus', function(ev) { this.select(); });
+      });
   }
 
   setupPlayers() {
@@ -67,38 +73,45 @@ class ConfigurationDialog {
       .querySelector('.js-config-players-container');
 
     this.dialog.nodes.add
-      .addEventListener('click', () => {
-        this.playerIndex++;
+      .addEventListener('click', () => this.addPlayer());
+  }
 
-        this.dialog.nodes.container.innerHTML += `
-          <div class="js-config-players-el">
-            <input class="js-config-player-name"
-              type="text"
-              value="Player ${this.playerIndex}">
-            <input type="color"
-              class="js-config-player-color"
-              value="#${Math.floor(Math.random()*16777215).toString(16)}">
-            <button 
-              type="button"
-              class="js-config-player-remove"
-              title="remove">
-              -
-            </button>
-          </div>
-        `;
+  addPlayer() {
+    this.playerIndex++;
 
-        this.dialog.nodes.removes = this.dialog.nodes.container
-          .querySelectorAll('.js-config-player-remove');
-      
-        this.dialog.nodes.removes.forEach(rem => {
-          rem.addEventListener('click', () => {
-            this.playerIndex--;
-            this.dialog.nodes.container.removeChild(
-              rem.closest('.js-config-players-el')
-            );
-          })
-        })
-      });
+    const playerDiv = document.createElement('div');
+    playerDiv.classList.add('js-config-players-el');
+
+    playerDiv.innerHTML += `
+      <input class="js-config-player-name"
+        type="text"
+        value="Player ${this.playerIndex}">
+      <input type="color"
+        onFocus="this.select();"
+        class="js-config-player-color"
+        value="#${Math.floor(Math.random()*16777215).toString(16)}">
+      <button 
+        type="button"
+        class="js-config-player-remove"
+        title="remove">
+        -
+      </button>
+    `;
+
+    playerDiv.querySelector('.js-config-player-name')
+      .addEventListener('keydown', e => help.keyNextHandler(e));
+
+    playerDiv.querySelector('.js-config-player-remove')
+      .addEventListener('click', (e) => this.removePlayer(e.target));
+
+    this.dialog.nodes.container.appendChild(playerDiv);
+  }
+
+  removePlayer(el) {
+    this.playerIndex--;
+    this.dialog.nodes.container.removeChild(
+      el.closest('.js-config-players-el')
+    );
   }
 
   async showDialog() {
@@ -124,15 +137,15 @@ class ConfigurationDialog {
       playerStore.addPlayer({
         name: playerEl.querySelector('.js-config-player-name').value,
         color: playerEl.querySelector('.js-config-player-color').value
-      })
-    })
+      });
+    });
 
   }
 
   onAccept() {
     this.parsePlayers();
     this.parseYTSettings();
-    topic.publish('game/start')
+    topic.publish('game/start');
   }
 }
 

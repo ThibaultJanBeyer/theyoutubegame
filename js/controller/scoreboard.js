@@ -8,7 +8,7 @@ class Scoreboard {
     this.n.scoreboard = document.querySelector('.js-game-scoreboard');
     topic.subscribe('game/start', () => this.draw());
     topic.subscribe('playerStore/player/update', (topic, args) => {
-      this.refreshPlayer(args)
+      this.refreshPlayer(args);
     });
   }
 
@@ -46,12 +46,13 @@ class Scoreboard {
             ${player.name}
           </td>
           <td class="score">
-            ${player.score}
+            ${(player.score*1).toLocaleString()}
           </td>
           <td class="guess">
             <input
+              onFocus="this.select();"
               type="number"
-              value="${player.guess}">
+              value="${(player.guess*1).toLocaleString()}">
           </td>
         </tr>
       `;
@@ -60,19 +61,24 @@ class Scoreboard {
     playerStore.players.forEach(player => {
       this.n.players.querySelector(`tr[data-id="${player.id}"] .guess input`)
         .addEventListener('change', e => {
-          player.guess = e.target.value
+          player.guess = e.target.value;
         });
     });
+
+    this.n.players.querySelectorAll('.guess input')
+      .forEach(guessInput => guessInput
+        .addEventListener('keydown', ev => help.keyNextHandler(ev))
+      );
   }
 
   // @todo: rewrite this beast
   refreshPlayer(args) {
     if(args.property === 'score') {
       this.n.players.querySelector(`tr[data-id="${args.id}"] .${args.property}`)
-        .innerHTML = args.value;
+        .innerHTML = (args.value*1).toLocaleString();
     } else if(args.property === 'guess') {
-      this.n.players.querySelector(`tr[data-id="${args.id}"] .${args.property} input`)
-        .value = args.value;
+      // this.n.players.querySelector(`tr[data-id="${args.id}"] .${args.property} input`)
+      //   .value = args.value;
     }
   }
 
