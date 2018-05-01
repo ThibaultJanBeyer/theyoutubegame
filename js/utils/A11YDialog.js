@@ -56,12 +56,13 @@ class A11YDialog {
 
         .a11yDialog__outer {
           background-color: white;
-          height: 400px;
-          left: calc(50% - 205px);
+          height: 70vh;
+          left: 50%;
           padding: 0 30px;
           position: absolute;
-          top: calc(50% - 230px);
+          top: 50%;
           width: 350px;
+          transform: translate(-50%, -50%);
         }
         
         .a11yDialog__close {
@@ -92,7 +93,7 @@ class A11YDialog {
           margin-bottom: 5px;
           background: black;
           color: white;
-          padding: 10px 20px;
+          padding: 20px;
         }
 
         .a11yDialog__content {
@@ -103,8 +104,7 @@ class A11YDialog {
         }
 
         .a11yDialog__buttons {
-          background: black;
-          padding: 10px 20px;
+          padding: 20px;
         }
 
       </style>

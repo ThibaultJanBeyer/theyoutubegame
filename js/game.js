@@ -1,7 +1,6 @@
 class Game {
   constructor( node ) {
     this.node = node;
-    this.firstRoll = true;
 
     this.startNode = this.node.querySelector('.js-game-start');
     this.videoNode = this.node.querySelector('.js-game-video');
@@ -16,21 +15,18 @@ class Game {
   }
 
   startHandler() {
-    if(this.firstRoll) {
+    if(playerStore.players.length < 1) {
       topic.publish('configuration/init');
-      this.firstRoll = false;
     } else {
       this.startUp();
     }
   }
 
   async startUp() {
-
     const videoID = await youTubeHandler.roll(gameStore.location, gameStore.language);
     this.drawVideo(videoID);
     this.drawInfo(videoID);
     document.body.classList.add('started');
-
   }
 
   drawVideo(videoID) {
