@@ -10,18 +10,17 @@
     // ugly re-routing for https on github pages
     // @todo: remove once we have our own serverz
     if(
-      !location.protocol.indexOf('https') > -1 &&
-      !location.protocol.indexOf('file') > -1 &&
-      !(
-        location.protocol.indexOf('http') > -1 &&
-        location.hostname.indexOf('localhost')
-      )
+      location.protocol.indexOf('https') < 0 &&
+      location.protocol.indexOf('file') < 0 &&
+      location.hostname.indexOf('localhost') < 0
     ) {
       location = `https://${location.hostname}${location.pathname}${location.search}`;
     }
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/solid.css" integrity="sha384-HTDlLIcgXajNzMJv5hiW5s2fwegQng6Hi+fN6t5VAcwO/9qbg2YEANIyKBlqLsiT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/fontawesome.css" integrity="sha384-8WwquHbb2jqa7gKWSoAwbJBV2Q+/rQRss9UXL5wlvXOZfSodONmVnifo/+5xJIWX" crossorigin="anonymous">
 
   <script src="js/model/BaseStore.js" defer></script>
   <script src="js/model/BaseEntity.js" defer></script>
@@ -40,13 +39,28 @@
   <script src="js/controller/scoreboard.js" defer></script>
 
   <script src="js/game.js" defer></script>
+
+  <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
+
+  <menu type="toolbar" class="menu">
+    <ul class="menu__ul">
+      <li aria-hidden="true" class="menu__li">
+        <button type="button" onClick="document.body.classList.toggle('dm')" class="menu__button">
+          <i class="fas fa-eye"></i>
+        </button>
+      </li>
+    </ul>
+  </menu>
+
   <main class="js-game">
 
-    <h1>
-      The Youtube Game .net
-    </h1>
+    <a class="site-title" href="/">
+      <h1 class="site-title__svg">
+          <span class="visuallyhidden">The Youtube Game .net</span>
+      </h1>
+    </a>
 
     <div class="scoreboard js-game-scoreboard"></div>
 

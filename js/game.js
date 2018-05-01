@@ -97,3 +97,7 @@ class Game {
 }
 
 const game = new Game( document.body );
+
+setTimeout(() => {
+  document.body.classList.add('loaded');
+}, 1000);
