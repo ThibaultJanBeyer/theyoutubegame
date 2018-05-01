@@ -1,13 +1,14 @@
 html, body {
+  background: white;
+  box-sizing: border-box;
+  color: black;
   margin: 0;
   padding: 0;
-  background: white;
-  color: black;
-  box-sizing: border-box;
+  font-family: sans-serif;
+  transition: 300ms ease-in-out background-color;
 }
 
 body {
-  padding: 10px;
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -24,10 +25,19 @@ body {
   width: 1px;
 }
 
+.fsm {
+  font-size: 1rem;
+}
+
 /* Dark Mode */
 .dm {
   background: black;
   color: white;
+}
+
+.dm .a11yDialog__outer {
+  background: black;
+  border: 2px solid white;
 }
 
 /* Menu */
@@ -36,7 +46,6 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 10px;
 }
 
 .menu__li {
@@ -45,18 +54,147 @@ body {
 
 /* Title */
 .site-title {
-  opacity: 1;
-  transition: 1s ease-in-out opacity;
-  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: scale(1.2) translate(-48%, -55%);
+  transform-origin: top left;
+  transition: 500ms ease-in-out transform,
+              500ms ease-in-out top,
+              500ms ease-in-out left;
+  z-index: 99;
 }
 
-.site-title__svg {
-  width: 400px;
-  height: 250px;
-  background: black;
+.started .site-title {
+  top: 25px;
+  left: 10px;
+  transform: scale(0.5);
+}
+
+.site-title__logo {
+  width: 320px;
+  height: 200px;
+  background: linear-gradient(to right, #4cd964, #007aff, #ff2d55, #5856d6, #4cd964);
+  background-size: 300% 100%;
+  animation: loading 2s linear infinite;
   clip-path: url(../assets/svg/logo.svg#logoClip);
 }
 
-.dm .site-title__svg {
+.started .site-title__logo {
+  background: linear-gradient(135deg, #fa354c 0%, #1a2980 100%);
+  animation: none;
+  background-size: 100%;
+}
+
+/* Animation */
+.loading-bg {
+  background: linear-gradient(to right, #4cd964, #007aff, #ff2d55, #5856d6, #4cd964);
+  background-size: 300% 100%;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  0%{background-position: 0% 100%}
+  100%{background-position: 300% 100%}
+}
+
+/* Scoreboard */
+
+.scoreboard {
   background: white;
+  padding: 10px 20px;
+  position: fixed;
+  right: 10px;
+  top: 20px;
+  z-index: 9;
+}
+
+.dm .scoreboard {
+  background: black;
+}
+
+.scoreboard input {
+  max-width: 80px;
+}
+
+.video {
+  position: fixed;
+  width: 80vw;
+  height: 70vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 600px) {
+  .video {
+    width: 100%;
+  }
+}
+
+.video__container {
+  background: black;
+  height: 100%;
+}
+
+/* Buttons */
+
+.button {
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.button--game {
+  width: 150px;
+  height: 50px;
+  position: fixed;
+  bottom: 8vh;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.button--primary {
+  width: 125px;
+  height: 40px;
+  color: white;
+  background: linear-gradient(135deg, #fa354c 0%, #1a2980 100%);
+  box-shadow: 5px 5px 0 #1a2980;
+}
+
+.button--primary:hover,
+.button--primary:focus {
+  color: black;
+  background: transparent;
+  border: 2px solid #1a2980;
+}
+
+.dm .button--primary:hover,
+.dm .button--primary:focus {
+  color: white;
+}
+
+.button--primary:active {
+  background: rgba(26, 41, 128, 0.1);
+}
+
+input[type=color] {
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  width: 20px;
+}
+
+.nobutton {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
 }

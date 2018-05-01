@@ -38,6 +38,7 @@ class A11YDialog {
           position: fixed;
           top: 0;
           width: 100%;
+          z-index: 99999999;
         }
 
         .a11yDialog[aria-hidden='true'] {
@@ -57,7 +58,7 @@ class A11YDialog {
           background-color: white;
           height: 400px;
           left: calc(50% - 205px);
-          padding: 20px 30px;
+          padding: 0 30px;
           position: absolute;
           top: calc(50% - 230px);
           width: 350px;
@@ -89,6 +90,9 @@ class A11YDialog {
         .a11yDialog__title {
           margin-top: 0;
           margin-bottom: 5px;
+          background: black;
+          color: white;
+          padding: 10px 20px;
         }
 
         .a11yDialog__content {
@@ -96,6 +100,11 @@ class A11YDialog {
           margin-right: -30px;
           padding-right: 30px;
           margin-bottom: 10px;
+        }
+
+        .a11yDialog__buttons {
+          background: black;
+          padding: 10px 20px;
         }
 
       </style>
@@ -119,7 +128,7 @@ class A11YDialog {
               ${this.content}
             </div>
         
-            <div class="a11yDialog__buttons">
+            <div class="a11yDialog__buttons dm">
               ${this.hasCancel ? `<button class="button js-cancel" type="button">Cancel</button>` : ''}
               ${this.hasOk ? `<button class="button button--primary js-accept fr" type="submit">OK</button>` : ''}
             </div>

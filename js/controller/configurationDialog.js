@@ -15,7 +15,9 @@ class ConfigurationDialog {
       type: 'alert',
       title: 'Game Setup',
       content: `
-        <h2>Players</h2>
+        <h2 class="fsm">
+          Players
+        </h2>
         <div class="js-config-players-container">
           <div class="js-config-players-el">
             <input
@@ -30,12 +32,14 @@ class ConfigurationDialog {
         </div>
         <button 
           type="button"
-          class="js-config-player-add"
+          class="nobutton js-config-player-add"
           title="add">
-          +
+          <i class="fas fa-plus-square"></i>
         </button>
 
-        <h2>YouTube Settings</h2>
+        <h2 class="fsm">
+          YouTube Settings
+        </h2>
         <label>
           <input class="js-config-yt-title"
             type="checkbox">
@@ -92,9 +96,9 @@ class ConfigurationDialog {
         value="#${Math.floor(Math.random()*16777215).toString(16)}">
       <button 
         type="button"
-        class="js-config-player-remove"
+        class="nobutton js-config-player-remove"
         title="remove">
-        -
+        <i class="fas fa-trash"></i>
       </button>
     `;
 
