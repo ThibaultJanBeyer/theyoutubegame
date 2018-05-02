@@ -44,7 +44,7 @@ class Game {
 
   drawInfo(videoID) {
     this.viewsNode.innerHTML = `
-      <button>
+      <button class="button button--primary button--game">
         Show Views
       </button>
     `;
@@ -56,10 +56,17 @@ class Game {
   async showViews(videoID) {
     const stats = await youTubeHandler.getVideoStats(videoID);
     const views = stats.viewCount*1;
+    const scores = this.calculateScores(views);
+
     this.viewsNode.innerHTML = `
-      Views: ${views.toLocaleString()}
+      <div class="views__container">
+        <div class="views__views">
+          Views: ${views.toLocaleString()}
+        </div>
+        ${scores}
+      </div>
     `;
-    this.calculateScores(views);
+    
   }
 
   calculateScores(views) {
@@ -67,21 +74,19 @@ class Game {
       return Math.abs(views - a.guess) - Math.abs(views - b.guess);
     });
 
-    this.viewsNode.innerHTML += `
-      <div>
-        Scores: ${nearest.map((n, i) => {
-          return `
-            ${i+1}. ${n.name}
-            (${(n.guess*1).toLocaleString()})
-            +${Math.floor(100 / (i+1))}
-          `;
-        }).join(' | ')}
-      </div>
+    const node = `
+      Scores:<br>
+      ${nearest.map((n, i) => {
+        return `
+          ${i+1}. ${n.name}
+          (${(n.guess*1).toLocaleString()})
+          +${Math.floor(100 / (i+1))}
+          <br>
+        `;
+      }).join('')}
     `;
 
     nearest.forEach((n, i) => {
-      // n.guess = 0;
-      // n.score += Math.floor(100 / (i+1));
       playerStore.players.forEach(player => {
         if(player.id === n.id) {
           player.guess = 0;
@@ -89,6 +94,8 @@ class Game {
         }
       });
     });
+
+    return node;
   }
 
 }

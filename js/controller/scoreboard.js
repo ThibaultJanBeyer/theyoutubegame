@@ -7,9 +7,7 @@ class Scoreboard {
   setup() {
     this.n.scoreboard = document.querySelector('.js-game-scoreboard');
     topic.subscribe('game/start', () => this.draw());
-    topic.subscribe('playerStore/player/update', (topic, args) => {
-      this.refreshPlayer(args);
-    });
+    topic.subscribe('playerStore/player/score/update', () => this.drawPlayers());
   }
 
   draw() {
@@ -69,17 +67,6 @@ class Scoreboard {
       .forEach(guessInput => guessInput
         .addEventListener('keydown', ev => help.keyNextHandler(ev))
       );
-  }
-
-  // @todo: rewrite this beast
-  refreshPlayer(args) {
-    if(args.property === 'score') {
-      this.n.players.querySelector(`tr[data-id="${args.id}"] .${args.property}`)
-        .innerHTML = (args.value*1).toLocaleString();
-    } else if(args.property === 'guess') {
-      // this.n.players.querySelector(`tr[data-id="${args.id}"] .${args.property} input`)
-      //   .value = args.value;
-    }
   }
 
 }

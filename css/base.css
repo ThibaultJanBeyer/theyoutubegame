@@ -54,7 +54,7 @@ body {
 
 /* Title */
 .site-title {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: scale(1.2) translate(-48%, -55%);
@@ -66,14 +66,22 @@ body {
 }
 
 .started .site-title {
-  top: 25px;
-  left: 10px;
+  top: 0;
+  left: 0;
+  margin: -6vh -8vw;
   transform: scale(0.5);
+}
+
+@media screen and (max-width: 600px) {
+  .started .site-title {
+    margin: 0;
+  }
 }
 
 .site-title__logo {
   width: 320px;
   height: 200px;
+  margin: 0;
   background: linear-gradient(to right, #4cd964, #007aff, #ff2d55, #5856d6, #4cd964);
   background-size: 300% 100%;
   animation: loading 2s linear infinite;
@@ -104,9 +112,20 @@ body {
   background: white;
   padding: 10px 20px;
   position: fixed;
-  right: 10px;
-  top: 20px;
+  right: 0;
+  top: 0;
+  margin: -6vh -8vw;
   z-index: 9;
+}
+
+@media screen and (max-width: 600px) {
+  .scoreboard {
+    margin: 0;
+  }
+}
+
+.scoreboard:empty {
+  display: none;
 }
 
 .dm .scoreboard {
@@ -120,7 +139,7 @@ body {
 .video {
   position: fixed;
   width: 80vw;
-  height: 70vh;
+  height: 80vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -137,6 +156,50 @@ body {
   height: 100%;
 }
 
+.views__container {
+  bottom: 30px;
+  left: 50%;
+  background: white;
+  position: absolute;
+  padding: 10px;
+  transform: translate(-50%);
+}
+
+@media screen and (max-width: 600px) {
+  .views__container {
+    margin: 0;
+  }
+}
+
+.dm .views__container {
+  background: black;
+  color: white;
+}
+
+.views__container::after {
+  content: "\f0d7";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  bottom: 0;
+  color: white;
+  left: 50%;
+  transform: translate(-50%, 80%);
+}
+
+.dm .views__container::after {
+  color: black;
+}
+
+.views__views {
+  font-size: 2rem;
+  font-weight: 900;
+  position: absolute;
+  margin-top: -2rem;
+  text-shadow: 0 0 10px black, 0 0 5px black, 0 0 1px black;
+  color: white;
+}
+
 /* Buttons */
 
 .button {
@@ -144,15 +207,6 @@ body {
   cursor: pointer;
   padding: 10px 20px;
   font-size: 1rem;
-}
-
-.button--game {
-  width: 150px;
-  height: 50px;
-  position: fixed;
-  bottom: 8vh;
-  left: 50%;
-  transform: translate(-50%, 50%);
 }
 
 .button--primary {
@@ -178,7 +232,17 @@ body {
 }
 
 .button--primary:active {
-  background: rgba(26, 41, 128, 0.1);
+  background: white;
+  color: black;
+}
+
+.button--game {
+  width: 150px;
+  height: 50px;
+  position: fixed;
+  bottom: -2vh;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }
 
 input[type=color] {

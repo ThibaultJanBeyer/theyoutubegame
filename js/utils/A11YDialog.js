@@ -91,9 +91,7 @@ class A11YDialog {
         .a11yDialog__title {
           margin-top: 0;
           margin-bottom: 5px;
-          background: black;
-          color: white;
-          padding: 20px;
+          padding: 20px 0;
         }
 
         .a11yDialog__content {
@@ -128,7 +126,7 @@ class A11YDialog {
               ${this.content}
             </div>
         
-            <div class="a11yDialog__buttons dm">
+            <div class="a11yDialog__buttons">
               ${this.hasCancel ? `<button class="button js-cancel" type="button">Cancel</button>` : ''}
               ${this.hasOk ? `<button class="button button--primary js-accept fr" type="submit">OK</button>` : ''}
             </div>
