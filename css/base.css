@@ -136,7 +136,7 @@ body {
   max-width: 80px;
 }
 
-.video {
+.game {
   position: fixed;
   width: 80vw;
   height: 80vh;
@@ -146,17 +146,17 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-  .video {
+  .game {
     width: 100%;
   }
 }
 
-.video__container {
+.video {
   background: black;
   height: 100%;
 }
 
-.views__container {
+.views {
   bottom: 30px;
   left: 50%;
   background: white;
@@ -166,17 +166,17 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-  .views__container {
+  .views {
     margin: 0;
   }
 }
 
-.dm .views__container {
+.dm .views {
   background: black;
   color: white;
 }
 
-.views__container::after {
+.views::after {
   content: "\f0d7";
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
@@ -187,17 +187,22 @@ body {
   transform: translate(-50%, 80%);
 }
 
-.dm .views__container::after {
+.dm .views::after {
   color: black;
 }
 
 .views__views {
+  color: white;
   font-size: 2rem;
   font-weight: 900;
-  position: absolute;
   margin-top: -2rem;
+  position: absolute;
   text-shadow: 0 0 10px black, 0 0 5px black, 0 0 1px black;
-  color: white;
+  white-space: nowrap;
+}
+
+.views__score {
+  margin-top: 5px;
 }
 
 /* Buttons */

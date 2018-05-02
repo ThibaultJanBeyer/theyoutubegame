@@ -59,7 +59,7 @@ class Game {
     const scores = this.calculateScores(views);
 
     this.viewsNode.innerHTML = `
-      <div class="views__container">
+      <div class="views">
         <div class="views__views">
           Views: ${views.toLocaleString()}
         </div>
@@ -75,7 +75,7 @@ class Game {
     });
 
     const node = `
-      Scores:<br>
+      <div class="views__score">
       ${nearest.map((n, i) => {
         return `
           ${i+1}. ${n.name}
@@ -84,6 +84,7 @@ class Game {
           <br>
         `;
       }).join('')}
+      </div>
     `;
 
     nearest.forEach((n, i) => {
