@@ -40,6 +40,10 @@ body {
   border: 1px solid white;
 }
 
+.dm i {
+  color: white;
+}
+
 /* Game */
 .game {
   position: fixed;
