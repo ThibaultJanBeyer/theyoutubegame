@@ -1,7 +1,7 @@
 # theyoutubegame
-Guess how many views a youtube video has (currently: work in progress)
+Guess how many views a youtube video has (currently: playable)
 
 # Play
-Unfinished and buggy:  
-https://thibaultjanbeyer.github.io/theyoutubegame/  
+Playable but still unfinished:  
+https://www.theyoutubegame.net/
 have fun  
