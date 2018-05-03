@@ -62,7 +62,6 @@ body {
   transition: 500ms ease-in-out transform,
               500ms ease-in-out top,
               500ms ease-in-out left;
-  z-index: 99;
 }
 
 .started .site-title {
@@ -85,13 +84,21 @@ body {
   background: linear-gradient(to right, #4cd964, #007aff, #ff2d55, #5856d6, #4cd964);
   background-size: 300% 100%;
   animation: loading 2s linear infinite;
-  clip-path: url(../assets/svg/logo.svg#logoClip);
+  -webkit-clip-path: url(#logoClip);
+  clip-path: url(#logoClip);
 }
 
 .started .site-title__logo {
   background: linear-gradient(135deg, #fa354c 0%, #1a2980 100%);
   animation: none;
   background-size: 100%;
+}
+
+@supports not (clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%)) {
+  .site-title__logo,
+  .started .site-title__logo {
+    background: url(../assets/svg/logo.svg#logo);
+  }
 }
 
 /* Animation */
