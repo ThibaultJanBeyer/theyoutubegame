@@ -25,5 +25,5 @@ The idea: you can select single player mode and play against other users that pl
 The idea: you get a game url/channel that you can share with friends so they can connect with their devices to place guesses.
 
 
-Feeling adventurous? Why don’t you join our team and start implementing cool stuf and make this game the #1 trending game.
-Marketers are also welcome because I’m not that of a marketer.
+# Feeling adventurous? Why don’t you join our team and start implementing cool stuf and make this game the #1 trending game.
+## Marketers are also welcome because I’m not that of a marketer. Also any other cool people that want to help.
