@@ -23,3 +23,7 @@ The idea: you can select single player mode and play against other users that pl
 ## Shared Multiplayer mode
 
 The idea: you get a game url/channel that you can share with friends so they can connect with their devices to place guesses.
+
+
+Feeling adventurous? Why don’t you join our team and start implementing cool stuf and make this game the #1 trending game.
+Marketers are also welcome because I’m not that of a marketer.
