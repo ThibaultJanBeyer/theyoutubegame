@@ -26,4 +26,4 @@ The idea: you get a game url/channel that you can share with friends so they can
 
 
 # Feeling adventurous? Why don’t you join our team and start implementing cool stuf and make this game the #1 trending game.
-## Marketers are also welcome because I’m not that of a marketer. Also any other cool people that want to help.
+## Marketers are also welcome because I’m not that of a marketer. Also, anyone else that want to help.
