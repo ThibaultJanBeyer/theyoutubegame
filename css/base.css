@@ -40,6 +40,21 @@ body {
   border: 1px solid white;
 }
 
+/* Game */
+.game {
+  position: fixed;
+  width: 80vw;
+  height: 80vh;
+  top: 10%;
+  left: 10%;
+}
+
+@media screen and (max-width: 600px) {
+  .game {
+    width: 100%;
+  }
+}
+
 /* Menu */
 .menu {
   margin: 0;
@@ -54,6 +69,7 @@ body {
 
 /* Title */
 .site-title {
+  -webkit-font-smoothing: antialiased;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -116,9 +132,10 @@ body {
 /* Scoreboard */
 
 .scoreboard {
+  -webkit-font-smoothing: antialiased;
   background: white;
   padding: 10px 20px;
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
   margin: -6vh -8vw;
@@ -143,32 +160,19 @@ body {
   max-width: 80px;
 }
 
-.game {
-  position: fixed;
-  width: 80vw;
-  height: 80vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@media screen and (max-width: 600px) {
-  .game {
-    width: 100%;
-  }
-}
-
 .video {
   background: black;
   height: 100%;
 }
 
 .views {
+  background: white;
   bottom: 30px;
   left: 50%;
-  background: white;
-  position: absolute;
+  min-width: 170px;
   padding: 10px;
+  position: absolute;
+  text-align: center;
   transform: translate(-50%);
 }
 
@@ -200,16 +204,15 @@ body {
 
 .views__views {
   color: white;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 900;
+  left: 0;
   margin-top: -2rem;
   position: absolute;
+  text-align: center;
   text-shadow: 0 0 10px black, 0 0 5px black, 0 0 1px black;
   white-space: nowrap;
-}
-
-.views__score {
-  margin-top: 5px;
+  width: 100%;
 }
 
 /* Buttons */
@@ -249,9 +252,10 @@ body {
 }
 
 .button--game {
+  -webkit-font-smoothing: antialiased;
   width: 150px;
   height: 50px;
-  position: fixed;
+  position: absolute;
   bottom: -2vh;
   left: 50%;
   transform: translate(-50%, 50%);
