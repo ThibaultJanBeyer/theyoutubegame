@@ -1,5 +1,5 @@
 # theyoutubegame
-Guess how many views a youtube video has (currently: playable)
+THE party game where you guess how many views a youtube video has!
 
 # Play
 Playable in party mode:  
