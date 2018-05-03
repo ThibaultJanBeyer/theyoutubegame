@@ -112,7 +112,7 @@ class A11YDialog {
       <div role="dialog" aria-labelledby="dialog-title" class="a11yDialog__outer">
 
         <button class="a11yDialog__close nobutton js-cancel" type="button" aria-label="Close this dialog window">
-          &times;
+          <i class="fas fa-times"></i>
         </button>
 
         <div role="document" class="a11yDialog__inside">

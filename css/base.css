@@ -67,6 +67,11 @@ body {
   right: 0;
 }
 
+.menu__ul {
+  margin: 0;
+  padding: 0;
+}
+
 .menu__li {
   display: inline-block;
 }
@@ -119,18 +124,6 @@ body {
   .started .site-title__logo {
     background: url(../assets/svg/logo.svg#logo);
   }
-}
-
-/* Animation */
-.loading-bg {
-  background: linear-gradient(to right, #4cd964, #007aff, #ff2d55, #5856d6, #4cd964);
-  background-size: 300% 100%;
-  animation: loading 2s linear infinite;
-}
-
-@keyframes loading {
-  0%{background-position: 0% 100%}
-  100%{background-position: 300% 100%}
 }
 
 /* Scoreboard */
@@ -240,7 +233,9 @@ body {
 }
 
 .button--primary:hover,
-.button--primary:focus {
+.button--primary:focus,
+.button--primary.button--roll:after:hover,
+.button--primary.button--roll:after:focus {
   background-size: 200%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -265,6 +260,35 @@ body {
   transform: translate(-50%, 50%);
 }
 
+.button--roll:before {
+  content: '';
+  background: linear-gradient(to right, #4cd964, #007aff, #ff2d55, #5856d6, #4cd964);
+  background-size: 300% 100%;
+  animation: loading 2s linear infinite;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 50px;
+}
+
+.button--roll:after {
+  content: 'Roll';
+  background: linear-gradient(135deg, #fa354c 0%, #1a2980 100%);
+  width: 100%;
+  height: 93%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 300ms ease-in-out background-size,
+    300ms ease-in-out box-shadow;
+}
+
 input[type=color] {
   background: none;
   border: none;
@@ -283,4 +307,16 @@ input[type=color] {
   font-size: 1rem;
   cursor: pointer;
   display: inline-block;
+}
+
+/* Animation */
+.loading-bg {
+  background: linear-gradient(to right, #4cd964, #007aff, #ff2d55, #5856d6, #4cd964);
+  background-size: 300% 100%;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  0%{background-position: 0% 100%}
+  100%{background-position: 300% 100%}
 }
