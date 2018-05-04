@@ -38,7 +38,7 @@ class ConfigurationDialog {
         </button>
 
         <h2 class="fsm">
-          YouTube Settings
+          Advanced Settings
         </h2>
         <label>
           <input class="js-config-yt-title"
