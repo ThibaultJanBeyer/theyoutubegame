@@ -51,7 +51,7 @@ class Game {
       <button type="button"
         class="nobutton button--game button--reroll link js-re-roll">
         or reroll
-      </a>
+      </button>
     `;
 
     this.viewsNode.querySelector('.js-re-roll').addEventListener('click', () => topic.publish('game/start'));
