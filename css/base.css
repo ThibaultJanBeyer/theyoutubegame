@@ -255,7 +255,7 @@ body {
   width: 150px;
   height: 50px;
   position: absolute;
-  bottom: -2vh;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
 }
@@ -289,6 +289,12 @@ body {
     300ms ease-in-out box-shadow;
 }
 
+.button--reroll {
+  text-align: center;
+  height: auto;
+  margin-bottom: -40px;
+}
+
 input[type=color] {
   background: none;
   border: none;
@@ -307,6 +313,11 @@ input[type=color] {
   font-size: 1rem;
   cursor: pointer;
   display: inline-block;
+}
+
+.link {
+  text-decoration: underline;
+  color: #007aff;
 }
 
 /* Animation */

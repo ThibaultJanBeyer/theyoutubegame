@@ -44,11 +44,17 @@ class Game {
 
   drawInfo(videoID) {
     this.viewsNode.innerHTML = `
-      <button class="button button--primary button--game">
+      <button type="button"
+        class="button button--primary button--game">
         Show Views
       </button>
+      <button type="button"
+        class="nobutton button--game button--reroll link js-re-roll">
+        or reroll
+      </a>
     `;
 
+    this.viewsNode.querySelector('.js-re-roll').addEventListener('click', () => topic.publish('game/start'));
     const showButton = this.viewsNode.querySelector('button');
     showButton.addEventListener('click', () => this.showViews(videoID));
   }
