@@ -12,6 +12,7 @@ class Game {
   addEventListeners() {
     this.startNode.addEventListener('click', () => this.startHandler());
     topic.subscribe('game/start', () => this.startUp());
+    topic.subscribe('game/roll', () => this.startUp());
   }
 
   startHandler() {
@@ -54,7 +55,7 @@ class Game {
       </button>
     `;
 
-    this.viewsNode.querySelector('.js-re-roll').addEventListener('click', () => topic.publish('game/start'));
+    this.viewsNode.querySelector('.js-re-roll').addEventListener('click', () => topic.publish('game/roll'));
     const showButton = this.viewsNode.querySelector('button');
     showButton.addEventListener('click', () => this.showViews(videoID));
   }

@@ -137,6 +137,12 @@ body {
   top: 0;
   margin: -6vh -8vw;
   z-index: 9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dm .scoreboard {
+  background: black;
+  border: 1px solid white;
 }
 
 @media screen and (max-width: 600px) {
@@ -149,13 +155,40 @@ body {
   display: none;
 }
 
-.dm .scoreboard {
-  background: black;
-}
-
 .scoreboard input {
   max-width: 80px;
 }
+
+.scoreboard__guess-info {
+  position: absolute;
+  top: calc(100% + 2rem);
+  background: white;
+  padding: 0 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  animation: bouncing 2s ease-in-out infinite;
+  transition: 300ms ease-in-out opacity;
+}
+
+.dm .scoreboard__guess-info {
+  background: black;
+  border: 1px solid white;
+}
+
+.scoreboard__guess-info:before {
+  top: -2rem;
+  right: 55px;
+  content: "\f0d8";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3),
+    0 0 1px black;
+  font-size: 2rem;
+}
+
+/* Video */
 
 .video {
   background: black;
@@ -164,7 +197,7 @@ body {
 
 .views {
   background: white;
-  bottom: 30px;
+  bottom: 45px;
   left: 50%;
   min-width: 170px;
   padding: 10px;
@@ -181,7 +214,7 @@ body {
 
 .dm .views {
   background: black;
-  color: white;
+  border: 1px solid white;
 }
 
 .views::after {
@@ -219,6 +252,7 @@ body {
   cursor: pointer;
   padding: 10px 20px;
   font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .button--primary {
@@ -232,12 +266,9 @@ body {
   300ms ease-in-out box-shadow;
 }
 
-.button--primary:hover,
-.button--primary:focus,
-.button--primary.button--roll:after:hover,
-.button--primary.button--roll:after:focus {
+.button:hover {
   background-size: 200%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 .dm .button--primary:hover,
@@ -330,4 +361,10 @@ input[type=color] {
 @keyframes loading {
   0%{background-position: 0% 100%}
   100%{background-position: 300% 100%}
+}
+
+@keyframes bouncing {
+  0%{transform: translateY(0)}
+  50%{transform: translateY(10%)}
+  100%{transform: translateY(0)}
 }

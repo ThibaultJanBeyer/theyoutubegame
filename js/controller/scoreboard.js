@@ -2,6 +2,7 @@ class Scoreboard {
   constructor() {
     this.n = {};
     this.setup();
+    this.firstTime = false;
   }
 
   setup() {
@@ -28,13 +29,29 @@ class Scoreboard {
         <tbody>
         </tbody>
       </table>
+      <div class="scoreboard__guess-info">
+        <p>How many views do you think this video has?</p>
+        <p>
+          <label for="guess-0">
+            <strong>Enter your guesses!</strong>
+          </label>
+        </p>
+      </div>
     `;
+
     this.n.players = this.n.scoreboard.querySelector('tbody');
+    setTimeout(() => {
+      const info = document.querySelector('.scoreboard__guess-info');
+      info.style.opacity = 0;
+      setTimeout(() => {
+        info.parentNode.removeChild(info);
+      }, 1000);
+    }, 10000);
   }
 
   drawPlayers() {
     this.n.players.innerHTML = '';
-    playerStore.players.forEach(player => {
+    playerStore.players.forEach((player, i) => {
       this.n.players.innerHTML += `
         <tr data-id="${player.id}">
           <td class="name">
@@ -48,6 +65,7 @@ class Scoreboard {
           </td>
           <td class="guess">
             <input
+              id="guess-${i}"
               onFocus="this.select();"
               type="number"
               value="${player.guess}">
