@@ -21,11 +21,11 @@ class ConfigurationDialog {
         <div class="js-config-players-container">
           <div class="js-config-players-el">
             <input
-              class="js-config-player-name"
+              class="input js-config-player-name"
               type="text"
               value="Player ${this.playerIndex}">
             <input
-              class="js-config-player-color"
+              class="input js-config-player-color"
               type="color"
               value="#0000ff">
           </div>
@@ -40,16 +40,34 @@ class ConfigurationDialog {
         <h2 class="fsm">
           Advanced Settings
         </h2>
-        <label>
-          <input class="js-config-yt-title"
-            type="checkbox">
-          Show video titles
-        </label>
-        <label>
-          <input class="js-config-yt-controls"
-            type="checkbox">
-          Enable youtube controls
-        </label>
+        <div>
+          <label>
+            <input class="js-config-hide-guesses"
+              type="checkbox" checked>
+            Hide guesses from other players
+          </label>
+        </div>
+        <div>
+          <label>
+            <input class="js-config-hide-guesses-button"
+              type="checkbox" checked>
+            Possible to show guesses
+          </label>
+        </div>
+        <div>
+          <label>
+            <input class="js-config-yt-title"
+              type="checkbox">
+            Show video titles
+          </label>
+        </div>
+        <div>
+          <label>
+            <input class="js-config-yt-controls"
+              type="checkbox">
+            Enable youtube controls
+          </label>
+        </div>
       `,
       onAccept: this.onAccept.bind(this)
     });
@@ -87,12 +105,12 @@ class ConfigurationDialog {
     playerDiv.classList.add('js-config-players-el');
 
     playerDiv.innerHTML += `
-      <input class="js-config-player-name"
+      <input class="input js-config-player-name"
         type="text"
         value="Player ${this.playerIndex}">
       <input type="color"
         onFocus="this.select();"
-        class="js-config-player-color"
+        class="input js-config-player-color"
         value="#${Math.floor(Math.random()*16777215).toString(16)}">
       <button 
         type="button"
@@ -124,12 +142,18 @@ class ConfigurationDialog {
     gameStore.location = await youTubeHandler.userRegion;
   }
 
-  parseYTSettings() {
+  parseSpecialSettings() {
     gameStore.ytTitle = this.dialog.nodes.base
       .querySelector('.js-config-yt-title').checked;
 
     gameStore.ytControls = this.dialog.nodes.base
       .querySelector('.js-config-yt-controls').checked;
+
+    gameStore.hideGuesses = this.dialog.nodes.base
+      .querySelector('.js-config-hide-guesses').checked;
+
+    gameStore.guessesButton = this.dialog.nodes.base
+      .querySelector('.js-config-hide-guesses-button').checked;
   }
 
   parsePlayers() {
@@ -148,7 +172,7 @@ class ConfigurationDialog {
 
   onAccept() {
     this.parsePlayers();
-    this.parseYTSettings();
+    this.parseSpecialSettings();
     topic.publish('game/start');
   }
 }

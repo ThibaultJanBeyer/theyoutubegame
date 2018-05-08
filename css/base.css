@@ -155,10 +155,6 @@ body {
   display: none;
 }
 
-.scoreboard input {
-  max-width: 80px;
-}
-
 .scoreboard__guess-info {
   position: absolute;
   top: calc(100% + 2rem);
@@ -326,6 +322,25 @@ body {
   margin-bottom: -40px;
 }
 
+.nobutton {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.link {
+  text-decoration: underline;
+  color: #007aff;
+}
+
+/* Inputs */
+.input {
+  height: 15px;
+  width: 80px;
+}
+
 input[type=color] {
   background: none;
   border: none;
@@ -338,17 +353,31 @@ input[type=color] {
   width: 20px;
 }
 
-.nobutton {
-  background: transparent;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  display: inline-block;
+/* Fully hide guesses visually */
+/* @TODO: maybe it would be better to hide them programmatically so cheating is impossible */
+.hide-guesses {
+  position: relative;
 }
 
-.link {
-  text-decoration: underline;
-  color: #007aff;
+.hide-guesses .input--guess {
+  font-size: 1px;
+  color: white;
+}
+
+.hide-guesses .input--guess::selection {
+  background: white;
+}
+
+.hide-guesses .input--guess:valid + *::before {  /* display that something was entered */
+  color: black;
+  content: "\f00c";
+  font-family: 'Font Awesome 5 Free';
+  font-size: 12px;
+  font-weight: 900;
+  left: 0;
+  padding: 9px;
+  position: absolute;
+  top: 0;
 }
 
 /* Animation */

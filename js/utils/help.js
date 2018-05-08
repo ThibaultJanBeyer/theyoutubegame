@@ -19,6 +19,24 @@ class Help {
         help.findNextTabStop(ev.target).focus();
     }
   }
+
+  showHidePW(element) {
+    element.active = !element.active;
+
+    const input = element.parentNode.querySelector('input');
+    element._type = input.type;
+    const iconNode = element.querySelector('i') || element.closest('i');
+
+    if(element.active) {
+      input.type = 'text';
+      iconNode.classList.remove('fa-eye');
+      iconNode.classList.add('fa-eye-slash');
+    } else {
+      input.type = element._type;
+      iconNode.classList.remove('fa-eye-slash');
+      iconNode.classList.add('fa-eye');
+    }
+  }
 }
 
 const help = new Help();

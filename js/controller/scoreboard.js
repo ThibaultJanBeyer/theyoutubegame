@@ -14,6 +14,7 @@ class Scoreboard {
   draw() {
     this.drawScoreboard();
     this.drawPlayers();
+    this.addEventListeners();
   }
 
   drawScoreboard() {
@@ -56,6 +57,7 @@ class Scoreboard {
         <tr data-id="${player.id}">
           <td class="name">
             <input disabled
+              class="input"
               type="color"
               value="${player.color}">
             ${player.name}
@@ -63,17 +65,32 @@ class Scoreboard {
           <td class="score">
             ${(player.score*1).toLocaleString()}
           </td>
-          <td class="guess">
+          <td class="guess ${gameStore.hideGuesses ? 'hide-guesses' : ''}">
+
             <input
+              class="input input--guess"
               id="guess-${i}"
               onFocus="this.select();"
               type="number"
-              value="${player.guess}">
+              pattern="[0-9]+"
+              value="${player.guess || ''}"
+              required>
+
+            <span></span>
+
+            ${gameStore.hideGuesses && gameStore.guessesButton ? `
+              <button class="nobutton js-show-pw">
+                <i class="fas fa-eye"></i>
+              </button>
+            ` : ''}
+
           </td>
         </tr>
       `;
     });
+  }
 
+  addEventListeners() {
     playerStore.players.forEach(player => {
       this.n.players.querySelector(`tr[data-id="${player.id}"] .guess input`)
         .addEventListener('change', e => {
@@ -81,9 +98,17 @@ class Scoreboard {
         });
     });
 
-    this.n.players.querySelectorAll('.guess input')
-      .forEach(guessInput => guessInput
-        .addEventListener('keydown', ev => help.keyNextHandler(ev))
+    this.n.guessInputs = this.n.players.querySelectorAll('.guess input');
+    this.n.guessInputs.forEach(guessInput => 
+      guessInput.addEventListener('keydown', ev => help.keyNextHandler(ev))
+    );
+
+    this.n.players.querySelectorAll('.js-show-pw')
+      .forEach(shower => shower
+        .addEventListener('click', ev => {
+          shower.parentNode.classList.toggle('hide-guesses');
+          help.showHidePW(shower);
+        })
       );
   }
 
