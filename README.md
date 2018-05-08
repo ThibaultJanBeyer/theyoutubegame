@@ -8,13 +8,8 @@ have fun
 
 
 # @Todo
-- Hidden Guesses Mode
 - Singleplayer mode WORLD
 - Shared Multiplayer mode
-
-## Hidden Guesses Mode
-
-The idea: when entering guesses they are hidden, maybe like in a password field, that you can at least see the length the other player guesses or maybe completely hidden that you don’t even see the length. This would be chosable at game selection
 
 ## Singleplayer mode WORLD
 
