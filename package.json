@@ -1,0 +1,22 @@
+{
+  "name": "theyoutubegame",
+  "version": "1.0.0",
+  "description": "THE party game where you guess how many views a youtube video has!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThibaultJanBeyer/theyoutubegame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThibaultJanBeyer/theyoutubegame/issues"
+  },
+  "homepage": "https://github.com/ThibaultJanBeyer/theyoutubegame#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
