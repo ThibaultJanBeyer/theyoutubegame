@@ -155,6 +155,7 @@ class A11YDialog {
 
   cancel() {
 
+    this.ok = true;
     this.onClose();
     this.onCancel();
     this.hide();
@@ -164,6 +165,7 @@ class A11YDialog {
   accept(e) {
 
     e.preventDefault();
+    this.ok = true;
     this.onAccept(this.nodes.form);
     this.hide();
 
@@ -174,8 +176,13 @@ class A11YDialog {
     document.body.appendChild(this.nodes.base);
 
     setTimeout(() => {
+      this.ok = false;
       this._dialog = new A11yDialog(this.nodes.base);
       this._dialog.show();
+      this._dialog.on('hide', (dialogEl, event) => {
+        console.log("hide", this.ok);
+        if(!this.ok) this.cancel();
+      });
     }, 100);
 
     return this;

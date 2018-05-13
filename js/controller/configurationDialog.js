@@ -173,7 +173,9 @@ class ConfigurationDialog {
   onAccept() {
     this.parsePlayers();
     this.parseSpecialSettings();
-    topic.publish('game/start');
+    const channel = help.uuidv4();
+    gameStore.channel = channel;
+    topic.publish('game/start', channel);
   }
 }
 
