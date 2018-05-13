@@ -1,7 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const apiRouter = require('./api-router');
 const path = require('path');
+const game = require('./game');
+const WebSocketServer = require('ws').Server;
+const url = require('url');
+const wss = new WebSocketServer( {
+  port: 40510
+} );
 
 // Setup
 ////////////////////////////////////////////////////////////////////////
@@ -23,7 +28,12 @@ app.set( 'view engine', 'html' ) ;
 // Game Api
 ////////////////////////////////////////////////////////////////////////
 
-app.use( '/api', apiRouter );
+// /g/:channel
+wss.on('connection', (ws, req) => { 
+  const query = url.parse(req.url, true).query;
+  game.init(query.channel, ws);
+});
+
 app.use( '*', function(req, res) {
   res.sendFile(path.resolve('index.html'));
 } );

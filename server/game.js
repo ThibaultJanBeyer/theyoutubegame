@@ -1,45 +1,78 @@
 class Game {
   constructor() {
-    this.create = this.create.bind(this);
+    this.channels = {};
   }
 
-  create(req, res) {
-    const WebSocketServer = require('ws').Server;
-    this.wss = new WebSocketServer( { port: 40510 } );
-
-    this.wss.on('connection', ws => {
-
-      this.ws = ws;
-      this.ws.on('message', this.onMessage.bind(this));
-      this.ws.on('error', this.onError.bind(this));
-      this.ws.on('close', this.onClose.bind(this));
-      setInterval(
-        () => this.sendMessage(`${new Date()}`),
-        1000
-      );
-
-    });
-
-    res.json({ ok: true });
+  /**
+   * @param {String} route route-id
+   * @param {Websocket} socket
+   */
+  add(route, socket) {
+    console.log('add: %s', route);
+    const channel = this.channels[route];
+    if(!channel) {
+      this.channels[route] = [];
+      this.channels[route].push(socket);
+      return;
+    }
+    channel.push(socket);
   }
 
-  onMessage(message) {
+  /**
+   * @param {String} route 
+   * @param {Websocket} socket 
+   */
+  remove(route, socket) {
+    console.log('remove: %s', route);
+    const channel = this.channels[route];
+    if(!channel) return;
+
+    const i = channel.indexOf(socket);
+    channel.splice(i, 1);
+    if(channel.length > 0) return;
+
+    delete this.channels[route];
+  }
+
+  /**
+   * @param {String} route 
+   * @param {String} message 
+   */
+  send(route, message) {
+    const channel = this.channels[route];
+    if(!channel) return;
+    channel.forEach(ws => ws.send(message));
+  }
+
+  /**
+   * @param {String} route
+   * @param {String} message 
+   */
+  receive(route, _message) {
+    const message = JSON.parse(_message);
     console.log('received: %s', message);
   }
 
-  onClose() {
-    console.log('ws closed');
-    this.ws.closed = true;
-  }
-
-  onError() {
+  error(route, error) {
     console.log('error: %s', error);
   }
 
-  sendMessage(message) {
-    if(this.ws.closed) return;
-    this.ws.send(message);
+  /**
+   * @param {String} route 
+   * @param {WebSocket} ws 
+   */
+  init(route, ws) {
+    ws.on('message', m => this.receive(route, m));
+    ws.on('close', m => this.remove(route, ws));
+    ws.on('error', e => this.error(route, e));
+
+    this.add(route, ws);
+    // @TODO: remove later
+    setInterval(() => {
+      this.send(route, route);
+    }, 10000);
   }
+
 }
 
 module.exports = new Game();
