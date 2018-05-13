@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const apiRouter = require('./api-router');
+const path = require('path');
 
 // Setup
 ////////////////////////////////////////////////////////////////////////
@@ -23,6 +24,9 @@ app.set( 'view engine', 'html' ) ;
 ////////////////////////////////////////////////////////////////////////
 
 app.use( '/api', apiRouter );
+app.use( '*', function(req, res) {
+  res.sendFile(path.resolve('index.html'));
+} );
 
 // Start Server
 ////////////////////////////////////////////////////////////////////////
