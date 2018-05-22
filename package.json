@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ThibaultJanBeyer/theyoutubegame#readme",
   "dependencies": {
     "express": "^4.16.3",
+    "nodemon": "^1.17.4",
     "uuid": "^3.2.1",
     "ws": "^5.1.1"
   }

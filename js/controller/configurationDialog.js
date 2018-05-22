@@ -175,7 +175,7 @@ class ConfigurationDialog {
     this.parseSpecialSettings();
     const channel = help.uuidv4();
     gameStore.channel = channel;
-    topic.publish('game/start', channel);
+    topic.publish('game/init', channel);
   }
 }
 
