@@ -1,0 +1,39 @@
+:root {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+  font-family: sans-serif;
+  font-weight: 400;
+  font-feature-settings: 'liga' 1, 'kern' 1;
+  letter-spacing: -0.005rem;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #444;
+  font-weight: 100;
+}
+
+.cut-text {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cut-text--s {
+  max-width: 160px;
+}
+
+.typography--tiny {
+  font-size: 0.8rem;
+}
+
+.typography--small-sub {
+  font-size: 0.9rem;
+  color: var(--color-grey);
+}

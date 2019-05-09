@@ -1,0 +1,72 @@
+:root {
+  --spacing-s: 5px;
+  --spacing: 10px;
+  --spacing-l: 15px;
+}
+
+.section {
+  box-shadow: var(--box-shadow);
+  padding: 20px 25px 25px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* Alignemnt */
+
+.db {
+  display: block;
+}
+
+.va-b {
+  vertical-align: bottom;
+}
+
+/* Spacing */
+
+.mr--s {
+  margin-right: var(--spacing-s);
+}
+
+.mr {
+  margin-right: var(--spacing);
+}
+
+.mr--l {
+  margin-right: var(--spacing-l);
+}
+
+.mb--s {
+  margin-bottom: var(--spacing-s);
+}
+
+.mb {
+  margin-bottom: var(--spacing);
+}
+
+.mb--l {
+  margin-bottom: var(--spacing-l);
+}
+
+.pr--s {
+  padding-right: var(--spacing-s);
+}
+
+.pr {
+  padding-right: var(--spacing);
+}
+
+.pr--l {
+  padding-right: var(--spacing-l);
+}
+
+.pb--s {
+  padding-bottom: var(--spacing-s);
+}
+
+.pb {
+  padding-bottom: var(--spacing);
+}
+
+.pb--l {
+  padding-bottom: var(--spacing-l);
+}

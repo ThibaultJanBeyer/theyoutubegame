@@ -1,0 +1,5 @@
+.vscode/
+build/
+buildUtils/
+meta/
+node_modules/
