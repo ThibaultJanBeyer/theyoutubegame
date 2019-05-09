@@ -1,8 +1,12 @@
 import words from 'utils/words';
 
-class YouTubeHandler {
+export default class YouTubeHandler {
   constructor() {
     this.key = 'AIzaSyA5qwSFN4TTTe8rmdrZ1eEhphd6r2FbW9A';
+  }
+
+  render() {
+    return null;
   }
 
   get randomQuery() {
@@ -115,5 +119,3 @@ class YouTubeHandler {
       .catch(err => console.error(err));
   }
 }
-
-export default new YouTubeHandler();

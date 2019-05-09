@@ -3,12 +3,14 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Layout from 'screens/Layout/Layout';
 
+import Game from 'screens/Game/Game';
 import Mode from 'screens/Mode/Mode';
 import NotFound from 'screens/NotFound/NotFound';
 
 export const LINKS = {
   home: '/',
   mode: '/mode',
+  game: '/game',
 };
 
 const ROUTES = [
@@ -21,6 +23,12 @@ const ROUTES = [
     title: 'Choose your game mode',
     component: Mode,
     path: LINKS.mode,
+  },
+  {
+    title: 'Game',
+    component: Game,
+    path: LINKS.game,
+    withId: true,
   },
 ];
 

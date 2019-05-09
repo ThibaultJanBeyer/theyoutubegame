@@ -5,9 +5,9 @@ import { uuid, color } from 'utils/random';
 // -----
 // Types
 // -----
-export const AUTH_LOGIN = 'cvt/user/AUTH_LOGIN';
-export const AUTH_LOGOUT = 'cvt/user/AUTH_LOGOUT';
-export const AUTH_ERROR = 'cvt/user/AUTH_ERROR';
+export const AUTH_LOGIN = 'tyg/user/AUTH_LOGIN';
+export const AUTH_LOGOUT = 'tyg/user/AUTH_LOGOUT';
+export const AUTH_ERROR = 'tyg/user/AUTH_ERROR';
 
 // -------
 // Reducer

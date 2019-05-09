@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
+import YouTubeHandler from 'controllers/YouTubeHandler';
 import Theme from 'theme';
 import store from 'modules/store';
 import Routes from 'Routes';
@@ -13,6 +14,7 @@ const app = document.getElementById('root');
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
+      <YouTubeHandler />
       <Theme>
         <Routes />
       </Theme>
