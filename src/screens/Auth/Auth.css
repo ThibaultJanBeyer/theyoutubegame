@@ -1,0 +1,31 @@
+.Auth__paper {
+  padding: 40px;
+  max-width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Auth__title {
+  margin-top: 0;
+}
+
+.Auth__field {
+  margin-bottom: 20px;
+}
+
+.Auth__appDescription {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.Auth__button {
+  background-color: #003d8f;
+  padding: 15px 10px;
+}
+
+.Auth__bigIcon {
+  font-size: 80px;
+  color: #003d8f;
+}

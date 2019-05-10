@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Layout from 'screens/Layout/Layout';
+import PrivateRoute from 'controllers/PrivateRoute';
 
 import Game from 'screens/Game/Game';
 import Mode from 'screens/Mode/Mode';
@@ -51,8 +52,7 @@ const Routes = () => {
   return (
     <Switch>
       {ROUTES.map((route, index) => {
-        // const Component = route.private ? PrivateRoute : Route;
-        const Component = Route;
+        const Component = route.private ? PrivateRoute : Route;
         return React.createElement(
           Component,
           {
