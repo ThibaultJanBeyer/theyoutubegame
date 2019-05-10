@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { postVideo } from 'modules/video';
 import { query, date, boolean, int } from 'utils/random';
 
-const key = 'AIzaSyA5qwSFN4TTTe8rmdrZ1eEhphd6r2FbW9A';
+const key = 'AIzaSyAQ28Tcxg061vZ2tsM2h7NMlPP2fVOQ3ug';
 
 class YouTubeHandler extends Component {
   state = {

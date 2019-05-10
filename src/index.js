@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
+import ConnectionHandler from 'controllers/ConnectionHandler';
 import YouTubeHandler from 'controllers/YouTubeHandler';
 import Theme from 'theme';
 import store from 'modules/store';
@@ -15,6 +16,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <YouTubeHandler />
+      <ConnectionHandler />
       <Theme>
         <Routes />
       </Theme>

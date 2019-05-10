@@ -8,6 +8,7 @@ import Game from 'screens/Game/Game';
 import Mode from 'screens/Mode/Mode';
 import Auth from 'screens/Auth/Auth';
 import NotFound from 'screens/NotFound/NotFound';
+import { tupleTypeAnnotation } from '@babel/types';
 
 export const LINKS = {
   home: '/',
@@ -33,6 +34,7 @@ const ROUTES = [
     component: Game,
     path: LINKS.game,
     withId: true,
+    private: true,
   },
   {
     title: 'Auth',

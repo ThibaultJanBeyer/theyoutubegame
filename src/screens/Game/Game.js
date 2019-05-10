@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getVideo } from 'modules/video';
+import './Game.css';
+import LeaderBoard from 'components/LeaderBoard/LeaderBoard';
+import { joinRoom, leaveRoom } from 'modules/room';
 
 class Game extends Component {
   componentDidMount() {
-    const { getVideo } = this.props;
-    getVideo();
+    const { match, joinRoom, user } = this.props;
+    joinRoom(match.params.id);
+    this.user = user;
+  }
+
+  componentWillUnmount() {
+    const { leaveRoom } = this.props;
+    leaveRoom(this.user.id);
   }
 
   render() {
-    const { match, controls, title, video } = this.props;
+    const { controls, title, video } = this.props;
     const videoNode =
       video && video.id ? (
         <iframe
@@ -33,8 +41,8 @@ class Game extends Component {
 
     return (
       <article className="Game">
-        <h1>Let the game begun {match.params.id}</h1>
-        {videoNode}`
+        <LeaderBoard />
+        {videoNode}
       </article>
     );
   }
@@ -42,10 +50,12 @@ class Game extends Component {
 
 const mapStateToProps = state => ({
   video: state.video.item,
+  user: state.user.item,
 });
 
 const mapActionsToProps = {
-  getVideo,
+  joinRoom,
+  leaveRoom,
 };
 
 export default connect(

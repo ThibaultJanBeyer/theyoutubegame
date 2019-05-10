@@ -1,0 +1,17 @@
+.LeaderBoard {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+}
+
+.LeaderBoard__title {
+  margin-top: 0;
+}
+
+.LeaderBoard__color {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: text-bottom;
+  display: inline-block;
+}
