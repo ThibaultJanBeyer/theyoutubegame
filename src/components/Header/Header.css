@@ -1,0 +1,13 @@
+.Header {
+  padding: 10px;
+}
+
+.Header__container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.Header__logo {
+  position: absolute;
+  width: 125px;
+}

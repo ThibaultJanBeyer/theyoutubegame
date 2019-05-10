@@ -6,9 +6,9 @@ import { LINKS } from 'Routes';
 
 class PrivateRoute extends Component {
   render() {
-    const { children, location, role, user, ...rest } = this.props;
+    const { children, location, user, ...rest } = this.props;
 
-    if (user.loggedIn && (!role || role === user.item.role)) {
+    if (user.loggedIn) {
       return <Route {...rest}>{children}</Route>;
     } else {
       return (

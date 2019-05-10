@@ -24,7 +24,7 @@
   --color-heading: var(--color-grey);
 
   --box-shadow: 2px 5px 20px 0 rgba(0, 0, 0, 0.15);
-  --box-shadow-s: 1px 3px 10px 0 rgba(0, 0, 0, 0.15);
+  --box-shadow-s: 1px 3px 10px 0 rgba(0, 0, 0, 0.1);
   --box-shadow-l: 3px 6px 30px 0 rgba(0, 0, 0, 0.2);
 }
 

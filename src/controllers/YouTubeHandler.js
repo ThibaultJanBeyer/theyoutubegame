@@ -1,21 +1,22 @@
-import words from 'utils/words';
+import { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class YouTubeHandler {
-  constructor() {
-    this.key = 'AIzaSyA5qwSFN4TTTe8rmdrZ1eEhphd6r2FbW9A';
-  }
+import { postVideo } from 'modules/video';
+import { query, date, boolean, int } from 'utils/random';
+
+const key = 'AIzaSyA5qwSFN4TTTe8rmdrZ1eEhphd6r2FbW9A';
+
+class YouTubeHandler extends Component {
+  state = {
+    videoId: null,
+  };
 
   render() {
+    const { videoRequest, postVideo } = this.props;
+    const { videoId } = this.state;
+    if (videoRequest) this.roll();
+    if (videoId) postVideo({ id: videoId });
     return null;
-  }
-
-  get randomQuery() {
-    // const possible =
-    // 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    // return possible.charAt(Math.floor(Math.random() * possible.length));
-    const word = words[Math.floor(Math.random() * words.length)];
-    console.info('q:', word);
-    return word;
   }
 
   get randomOrder() {
@@ -38,34 +39,11 @@ export default class YouTubeHandler {
     return time;
   }
 
-  get randomDate() {
-    function randomDate(start, end) {
-      return new Date(
-        start.getTime() + Math.random() * (end.getTime() - start.getTime())
-      );
-    }
-    const date = randomDate(new Date(2006, 0, 1), new Date());
-    console.info('d:', date);
-    return date.toISOString();
-  }
-
   get userRegion() {
     return fetch('https://geoip-db.com/json')
       .then(resp => resp.json())
       .then(resp => resp['country_code'])
       .catch(err => console.error(err));
-  }
-
-  getRandomInt(max) {
-    const i = Math.floor(Math.random() * max); // The maximum is inclusive and the minimum is inclusive
-    console.info('i:', i);
-    return i;
-  }
-
-  get yesNo() {
-    const b = Math.random() > 0.5;
-    console.info('b:', b);
-    return b;
   }
 
   /**
@@ -78,26 +56,27 @@ export default class YouTubeHandler {
     console.log('l:', location, 'la:', language);
     return fetch(
       `https://www.googleapis.com/youtube/v3/search
-      ?q=${this.randomQuery}
+      ?q=${query()}
       &maxResults=50
-      &${this.yesNo ? `${this.randomDateOrder}=${this.randomDate}` : ''}
+      &${boolean ? `${this.randomDateOrder}=${date()}` : ''}
       &order=${this.randomOrder}
       &type=video
       &part=snippet
       ${location ? `&regionCode=${location}` : ''}
       ${language ? `&relevanceLanguage=${language}` : ''}
-      &key=${this.key}
+      &key=${key}
       `.replace(/\s/g, '')
     )
       .then(resp => resp.json())
       .then(resp => {
-        if (resp.items) return resp.items[this.getRandomInt(resp.items.length)];
+        if (resp.items) return resp.items[int(0, resp.items.length)];
         else throw resp;
       })
       .then(item => {
         if (item.id && item.id.videoId) return item.id.videoId;
         else throw item;
       })
+      .then(videoId => this.setState({ videoId }))
       .catch(err => console.error(err));
   }
 
@@ -111,7 +90,7 @@ export default class YouTubeHandler {
       https://www.googleapis.com/youtube/v3/videos
       ?part=statistics
       &id=${videoID}
-      &key=${this.key}
+      &key=${key}
     `.replace(/\s/g, '')
     )
       .then(resp => resp.json())
@@ -119,3 +98,16 @@ export default class YouTubeHandler {
       .catch(err => console.error(err));
   }
 }
+
+const mapStateToProps = state => ({
+  videoRequest: state.video.loading,
+});
+
+const mapActionsToProps = {
+  postVideo,
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(YouTubeHandler);

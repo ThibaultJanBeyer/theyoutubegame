@@ -2,19 +2,39 @@
   --spacing-s: 5px;
   --spacing: 10px;
   --spacing-l: 15px;
+  --spacing-xxl: 40px;
+
+  --border-radius: 5px;
+}
+
+.paper {
+  padding: var(--spacing-xxl);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
 }
 
 .section {
   box-shadow: var(--box-shadow);
   padding: 20px 25px 25px;
   background: white;
-  border-radius: 2px;
+  border-radius: var(--border-radius);
 }
 
 /* Alignemnt */
 
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .db {
   display: block;
+}
+
+.dib {
+  display: inline-block;
 }
 
 .va-b {

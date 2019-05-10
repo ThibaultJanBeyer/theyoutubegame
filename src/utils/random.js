@@ -1,22 +1,41 @@
 import words from 'utils/words';
 
-function getRandomIntInclusive(min, max) {
+export const date = () => {
+  function randomDate(start, end) {
+    return new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime())
+    );
+  }
+  const date = randomDate(new Date(2006, 0, 1), new Date());
+  return date.toISOString();
+};
+
+export const boolean = () => 
+  Math.random() > 0.5;
+
+export const int = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
-}
+};
+
+// const possible =
+// 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+// return possible.charAt(Math.floor(Math.random() * possible.length));
+export const query = () => 
+  words[int(0, words.length - 1)];
 
 export const color = () => {
   const letters = '0123456789ABCDEF';
   let color = '#';
   for (let i = 0; i < 6; i++) {
-    color += letters[getRandomIntInclusive(0, 15)];
+    color += letters[int(0, 15)];
   }
   return color;
 };
 
+// v4
 export const uuid = () => {
-  // v4
   var d = new Date().getTime();
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = (d + Math.random() * 16) % 16 | 0;
@@ -27,7 +46,7 @@ export const uuid = () => {
 
 export const wordId = () => {
   const number = parseInt(Math.random() * 100);
-  const word = words[getRandomIntInclusive(0, words.length - 1)];
+  const word = query();
   const cleanWord = word
     .split(' ')[0]
     .substring(0, 4)

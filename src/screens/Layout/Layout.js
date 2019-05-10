@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
+import Header from 'components/Header/Header';
 import './Layout.css';
 
 const Layout = ({ title, children }) => {
@@ -14,6 +15,9 @@ const Layout = ({ title, children }) => {
         <title>{fullTitle}</title>
       </Helmet>
       <div className="Layout">
+        <div className="header">
+          <Header />
+        </div>
         <div className="main">{children}</div>
       </div>
     </React.Fragment>

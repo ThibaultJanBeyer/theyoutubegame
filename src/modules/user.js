@@ -1,6 +1,6 @@
 // Following the reDUCKS pattern https://github.com/erikras/ducks-modular-redux
 
-import { uuid, color } from 'utils/random';
+import { uuid, color, wordId } from 'utils/random';
 
 // -----
 // Types
@@ -19,6 +19,7 @@ const _user = _userItem ? JSON.parse(_userItem) : false;
 const defaultUser = {
   color: color(),
   id: uuid(),
+  username: wordId(),
   score: 0,
   guess: 0,
   role: 'user',

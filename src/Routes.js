@@ -6,12 +6,14 @@ import PrivateRoute from 'controllers/PrivateRoute';
 
 import Game from 'screens/Game/Game';
 import Mode from 'screens/Mode/Mode';
+import Auth from 'screens/Auth/Auth';
 import NotFound from 'screens/NotFound/NotFound';
 
 export const LINKS = {
   home: '/',
   mode: '/mode',
   game: '/game',
+  auth: '/auth',
 };
 
 const ROUTES = [
@@ -24,12 +26,18 @@ const ROUTES = [
     title: 'Choose your game mode',
     component: Mode,
     path: LINKS.mode,
+    private: true,
   },
   {
     title: 'Game',
     component: Game,
     path: LINKS.game,
     withId: true,
+  },
+  {
+    title: 'Auth',
+    component: Auth,
+    path: LINKS.auth,
   },
 ];
 
@@ -60,7 +68,7 @@ const Routes = () => {
             exact: true,
             role: route.role,
             path: getPath(route),
-            component: ({ match }) => {
+            component: ({ match, location }) => {
               if (route.redirect) return <Redirect to={route.redirect} />;
 
               const title = getTitle(route, match);
@@ -70,7 +78,7 @@ const Routes = () => {
                 <Layout title={title}>
                   {React.createElement(
                     route.component,
-                    { match, type, basePath, title },
+                    { match, type, basePath, title, location },
                     null
                   )}
                 </Layout>
