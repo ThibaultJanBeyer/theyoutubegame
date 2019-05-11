@@ -12,3 +12,22 @@
   width: 125px;
   z-index: 1;
 }
+
+.Header__logo-shadow {
+  background: linear-gradient(to right, #4cd964, #007aff, #ff2d55, #5856d6, #4cd964);
+  background-size: 300% 100%;
+  animation: loading 10s linear infinite;
+  -webkit-clip-path: url(#logoClip);
+  clip-path: url(#logoClip);
+  width: 320px;
+  height: 200px;
+  transform: scale(0.4);
+  transform-origin: top left;
+  position: absolute;
+  opacity: 0.4;
+}
+
+@keyframes loading {
+  0%{background-position: 0% 100%}
+  100%{background-position: 300% 100%}
+}

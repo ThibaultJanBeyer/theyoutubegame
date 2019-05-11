@@ -9,6 +9,8 @@ export const AUTH_LOGIN = 'tyg/user/AUTH_LOGIN';
 export const AUTH_LOGOUT = 'tyg/user/AUTH_LOGOUT';
 export const AUTH_ERROR = 'tyg/user/AUTH_ERROR';
 
+export const POST_GUESS = 'tyg/user/POST_GUESS';
+
 // -------
 // Reducer
 // -------
@@ -34,7 +36,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  // Single User Auth
+  case POST_GUESS:
+    state.item.guess = action.payload;
+    return {
+      ...state,
+    };
+
+    // Single User Auth
 
   case AUTH_LOGIN:
     return {
@@ -106,4 +114,11 @@ export const handleLogout = dispatch => {
     type: AUTH_LOGOUT,
     payload: false,
   });
+};
+
+export const postGuess = guess => {
+  return {
+    type: POST_GUESS,
+    payload: guess,
+  };
 };

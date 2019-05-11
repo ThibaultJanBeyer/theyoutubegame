@@ -20,9 +20,21 @@ class Header extends Component {
       <header className="Header" role="banner">
         <section className="Header__container">
           <div className="Header__left">
+            <div className="Header__logo-shadow" />
             <Logo className="Header__logo" />
           </div>
           <div className="Header__right">
+            {room ? (
+              <Link to={LINKS.mode} className="link">
+                <FontAwesomeIcon
+                  icon="reply"
+                  title={`User: ${user.username}`}
+                  size="lg"
+                />
+              </Link>
+            ) : (
+              ''
+            )}
             {user.username ? (
               <button className="link" type="button" onClick={this.handleUser}>
                 <FontAwesomeIcon
@@ -31,17 +43,6 @@ class Header extends Component {
                   size="lg"
                 />
               </button>
-            ) : (
-              ''
-            )}
-            {room ? (
-              <Link to={LINKS.mode} className="link">
-                <FontAwesomeIcon
-                  icon="user-circle"
-                  title={`User: ${user.username}`}
-                  size="lg"
-                />
-              </Link>
             ) : (
               ''
             )}

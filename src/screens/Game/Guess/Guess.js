@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import postGuess from 'modules/user';
+
 import './Guess.css';
 
 class Guess extends Component {
   state = {
     guess: false,
+    locked: false,
   };
 
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     console.log('submit guess');
+    postGuess(this.guess);
+    this.setState({
+      locked: true,
+    });
   };
 
   render() {
+    const { locked } = this.state;
     return (
       <section className="Guess paper">
-        <h2 className="Guess__title">How many views has this video?</h2>
+        <h2 className="Guess__title">
+          {locked ? 'Thank you!' : 'How many views has this video?'}
+        </h2>
+        {locked ? 'waiting for other players' : ''}
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="guess" className="visually-hidden">
             Enter your guess:
@@ -28,10 +40,15 @@ class Guess extends Component {
               className="input"
               onChange={event => this.setState({ guess: event.target.value })}
               required
+              disabled={locked}
             />
-            <button type="submit" className="button button--primary">
-              Submit
-            </button>
+            {!locked ? (
+              <button type="submit" className="button button--primary">
+                Submit
+              </button>
+            ) : (
+              ''
+            )}
           </div>
         </form>
       </section>
@@ -39,11 +56,9 @@ class Guess extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  members: state.room.items,
-});
+const mapActionsToProps = {};
 
 export default connect(
-  mapStateToProps,
-  null
+  null,
+  mapActionsToProps
 )(Guess);

@@ -4,6 +4,7 @@ import {
   faGlobeEurope,
   faUsers,
   faUserCircle,
+  faReply,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add([faGlobeEurope, faUsers, faUserCircle]);
+library.add([faGlobeEurope, faUsers, faUserCircle, faReply]);
