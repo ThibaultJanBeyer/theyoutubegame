@@ -57,7 +57,7 @@ class Auth extends Component {
         <h1 className="Auth__title">Who are you?</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="Auth__field">
-            <label className="db" htmlFor="username dib">
+            <label className="db" htmlFor="username">
               Username
             </label>
             <input

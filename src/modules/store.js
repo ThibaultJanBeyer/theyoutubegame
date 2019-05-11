@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import user from './user';
-import video from './video';
 import room from './room';
 
 const initialState = {};
@@ -11,7 +10,7 @@ const useDevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true, traceLimit: 5 });
 
 export default createStore(
-  combineReducers({ user, video, room }),
+  combineReducers({ user, room }),
   initialState,
   useDevTools // (1)
     ? compose(

@@ -23,7 +23,7 @@ class ConnectionHandler extends Component {
   render() {
     const { roomId, leaving } = this.props;
     if (roomId) this.connect(roomId);
-    if (leaving) this.disconnect(roomId, leaving);
+    if (leaving) this.disconnect(leaving.roomId, leaving.userId);
     return null;
   }
 }

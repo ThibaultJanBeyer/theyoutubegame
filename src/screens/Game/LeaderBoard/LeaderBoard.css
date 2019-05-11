@@ -2,16 +2,19 @@
   position: absolute;
   top: 0;
   right: 0;
-  padding: 20px;
 }
 
-.LeaderBoard__title {
-  margin-top: 0;
+.LeaderBoard__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 .LeaderBoard__color {
-  width: 1rem;
-  height: 1rem;
+  width: 20px;
+  height: 20px;
   vertical-align: text-bottom;
   display: inline-block;
+  border: 0;
+  box-sizing: border-box;
 }

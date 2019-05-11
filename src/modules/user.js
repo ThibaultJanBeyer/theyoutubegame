@@ -21,7 +21,7 @@ const defaultUser = {
   id: uuid(),
   username: wordId(),
   score: 0,
-  guess: 0,
+  guess: false,
   role: 'user',
 };
 

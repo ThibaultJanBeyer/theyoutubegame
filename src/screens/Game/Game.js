@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './Game.css';
-import LeaderBoard from 'components/LeaderBoard/LeaderBoard';
+import Guess from './Guess/Guess';
+import LeaderBoard from './LeaderBoard/LeaderBoard';
 import { joinRoom, leaveRoom } from 'modules/room';
 
 class Game extends Component {
@@ -13,43 +14,44 @@ class Game extends Component {
   }
 
   componentWillUnmount() {
-    const { leaveRoom } = this.props;
-    leaveRoom(this.user.id);
+    const { match, leaveRoom } = this.props;
+    leaveRoom({ roomId: match.params.id, userId: this.user.id });
   }
 
   render() {
-    const { controls, title, video } = this.props;
-    const videoNode =
-      video && video.id ? (
-        <iframe
-          title="youtube-video"
-          width="100%"
-          height="100%"
-          frameBorder="0"
-          allow="autoplay"
-          src={`
-        https://www.youtube.com/embed/${video.id}
+    const { controls, title, videoId } = this.props;
+    const videoNode = videoId ? (
+      <iframe
+        className="Game__video"
+        title="youtube-video"
+        width="100%"
+        height="100%"
+        frameBorder="0"
+        allow="autoplay"
+        src={`
+        https://www.youtube.com/embed/${videoId}
           ?autoplay=1
           ${!controls ? '&controls=0' : ''}
           &rel=0
           ${!title ? '&showinfo=0' : ''}
       `.replace(/\s/g, '')}
-        />
-      ) : (
-        ''
-      );
+      />
+    ) : (
+      ''
+    );
 
     return (
       <article className="Game">
         <LeaderBoard />
         {videoNode}
+        <Guess />
       </article>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  video: state.video.item,
+  videoId: state.room.videoId,
   user: state.user.item,
 });
 

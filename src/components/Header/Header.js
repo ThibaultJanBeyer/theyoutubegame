@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 import './Header.css';
+import { LINKS } from 'Routes';
 import { ReactComponent as Logo } from './logo.svg';
 import { logoutUser } from 'modules/user';
 
@@ -13,7 +15,7 @@ class Header extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, room } = this.props;
     return (
       <header className="Header" role="banner">
         <section className="Header__container">
@@ -32,6 +34,17 @@ class Header extends Component {
             ) : (
               ''
             )}
+            {room ? (
+              <Link to={LINKS.mode} className="link">
+                <FontAwesomeIcon
+                  icon="user-circle"
+                  title={`User: ${user.username}`}
+                  size="lg"
+                />
+              </Link>
+            ) : (
+              ''
+            )}
           </div>
         </section>
       </header>
@@ -41,6 +54,7 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   user: state.user.item,
+  room: state.room.roomId,
 });
 
 const mapActionsToProps = {

@@ -2,15 +2,16 @@
   --spacing-s: 5px;
   --spacing: 10px;
   --spacing-l: 15px;
-  --spacing-xxl: 40px;
+  --spacing-xl: 25px;
 
   --border-radius: 5px;
 }
 
 .paper {
-  padding: var(--spacing-xxl);
+  padding: var(--spacing-xl);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
+  background-color: var(--color-grey-subtle);
 }
 
 .section {

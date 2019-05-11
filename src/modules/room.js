@@ -14,6 +14,7 @@ export const ROOM_ERROR = 'tyg/room/ROOM_ERROR';
 
 const initialState = {
   items: [],
+  videoId: false,
   roomId: false,
   error: false,
   loading: false,
@@ -26,19 +27,22 @@ export default (state = initialState, action) => {
   case SYNC_ROOM:
     return {
       ...state,
-      items: action.payload,
+      items: action.payload.members,
+      videoId: action.payload.videoId,
     };
 
   case JOIN_ROOM:
     return {
       ...state,
       roomId: action.payload,
+      leaving: false,
     };
 
   case LEAVE_ROOM:
     return {
       ...state,
       leaving: action.payload,
+      roomId: false,
     };
 
   default:
@@ -56,10 +60,10 @@ export const joinRoom = id => {
   };
 };
 
-export const leaveRoom = id => {
+export const leaveRoom = object => {
   return {
     type: LEAVE_ROOM,
-    payload: id,
+    payload: object,
   };
 };
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './LeaderBoard.css';
 
@@ -10,9 +9,10 @@ class LeaderBoard extends Component {
     if (!members) return '';
     const sorted = members.sort((a, b) => a.score > b.score);
     return sorted.map((member, i) => {
-      if (!member.username) return;
+      if (!member.username) return '';
       return (
-        <li key={i}>
+        <li key={i} data-uuid={member.id}>
+          {i + 1}.&nbsp;
           <input
             className="LeaderBoard__color"
             type="color"
@@ -29,8 +29,8 @@ class LeaderBoard extends Component {
   render() {
     return (
       <section className="LeaderBoard paper">
-        <h2 className="LeaderBoard__title">Leaderboard</h2>
-        <ol>{this.getMembersView()}</ol>
+        <h2 className="visually-hidden">Leaderboard</h2>
+        <ol className="LeaderBoard__list">{this.getMembersView()}</ol>
       </section>
     );
   }
