@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import postGuess from 'modules/user';
+import { putUser } from 'modules/user';
 
 import './Guess.css';
 
@@ -13,8 +13,9 @@ class Guess extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log('submit guess');
-    postGuess(this.guess);
+    const { guess } = this.state;
+    const { user, putUser } = this.props;
+    putUser(Object.assign({}, user, { guess: guess * 1 }));
     this.setState({
       locked: true,
     });
@@ -56,9 +57,15 @@ class Guess extends Component {
   }
 }
 
-const mapActionsToProps = {};
+const mapStateToProps = state => ({
+  user: state.user.item,
+});
+
+const mapActionsToProps = {
+  putUser,
+};
 
 export default connect(
-  null,
+  mapStateToProps,
   mapActionsToProps
 )(Guess);

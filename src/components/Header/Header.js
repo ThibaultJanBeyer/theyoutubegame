@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import './Header.css';
 import { LINKS } from 'Routes';
-import { ReactComponent as Logo } from './logo.svg';
+import { ReactComponent as Logo } from './logo_fill.svg';
 import { logoutUser } from 'modules/user';
 
 class Header extends Component {

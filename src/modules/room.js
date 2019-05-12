@@ -18,6 +18,7 @@ const initialState = {
   roomId: false,
   error: false,
   loading: false,
+  leaving: false,
 };
 
 export default (state = initialState, action) => {

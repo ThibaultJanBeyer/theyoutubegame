@@ -3,16 +3,22 @@ import { connect } from 'react-redux';
 import openSocket from 'socket.io-client';
 
 import { syncRoom } from 'modules/room';
-import { postGuess } from 'modules/user';
+import { putUser } from 'modules/user';
 
 class ConnectionHandler extends Component {
   componentDidMount() {
-    const { syncRoom } = this.props;
+    const { syncRoom, putUser } = this.props;
     this.socket = openSocket('http://localhost:8000/');
-    this.socket.on('room/sync', data => {
-      console.log('sync');
-      syncRoom(data);
-    });
+
+    this.socket.on('room/sync', data => syncRoom(data));
+    this.socket.on('user/sync', data => putUser(data));
+
+    this.updateUser();
+  }
+
+  updateUser() {
+    const { user } = this.props;
+    this.socket.emit('user/sync', user);
   }
 
   connect(id) {
@@ -24,17 +30,22 @@ class ConnectionHandler extends Component {
     this.socket.emit('room/leave', { roomId, userId });
   }
 
-  guess(value) {
-    const { user, postGuess } = this.props;
-    this.socket.emit('user/guess', { value, user });
-    postGuess(false);
+  componentDidUpdate(prevProps) {
+    const { roomId, leaving, user } = this.props;
+    if (!this.socket) return;
+    // Typical usage (don't forget to compare props):
+    if (roomId !== prevProps.roomId) {
+      this.connect(roomId);
+    }
+    if (leaving !== prevProps.leaving) {
+      this.disconnect(leaving.roomId, leaving.userId);
+    }
+    if (user !== prevProps.user) {
+      this.updateUser(user);
+    }
   }
 
   render() {
-    const { roomId, leaving, user } = this.props;
-    if (roomId) this.connect(roomId);
-    if (leaving) this.disconnect(leaving.roomId, leaving.userId);
-    if (user.item && user.item.guess) this.guess(user.item.guess);
     return null;
   }
 }
@@ -47,7 +58,7 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   syncRoom,
-  postGuess,
+  putUser,
 };
 
 export default connect(
