@@ -26,8 +26,8 @@ class ConnectionHandler extends Component {
     this.socket.emit('room/join', { id, user });
   }
 
-  disconnect(roomId, userId) {
-    this.socket.emit('room/leave', { roomId, userId });
+  disconnect(id, user) {
+    this.socket.emit('room/leave', { id, user });
   }
 
   componentDidUpdate(prevProps) {

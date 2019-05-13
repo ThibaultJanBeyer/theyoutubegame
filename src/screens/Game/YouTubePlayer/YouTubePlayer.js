@@ -13,7 +13,10 @@ class YouTubePlayer extends Component {
     console.log('ready');
     // https://developers.google.com/youtube/iframe_api_reference#playVideo
     this.player = event.target;
-    this.setState({ overlay: false });
+  };
+
+  onPlay = () => {
+    setTimeout(() => this.setState({ overlay: false }), 4000);
   };
 
   render() {
@@ -40,12 +43,13 @@ class YouTubePlayer extends Component {
 
     return (
       <React.Fragment>
-        {overlay ? <div className="YouTubePlayer__overlay" /> : ''}
+        {overlay ? <div className="YouTubePlayer__overlay">Loading…</div> : ''}
         <YouTube
           className="YouTubePlayer"
           videoId={videoId}
           opts={opts}
           onReady={this.onReady}
+          onPlay={this.onPlay}
         />
       </React.Fragment>
     );

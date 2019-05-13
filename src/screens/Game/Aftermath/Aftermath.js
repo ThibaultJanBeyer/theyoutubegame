@@ -22,7 +22,7 @@ class Aftermath extends Component {
     const localUser = members.find(member => member.uuid === user.uuid);
 
     let message = `This video has ${viewCount} views. `;
-    if (!localUser.guess && !localUser.bonus) {
+    if (typeof localUser.guess !== 'number') {
       message += 'You did not participate this round.';
     } else {
       message += `
@@ -59,8 +59,8 @@ class Aftermath extends Component {
             </div>
           </div>
           <span className="Aftermath__video-sub typography--tiny">
-            Likes: {likeCount} | Dislikes: {dislikeCount} |
-            Comments: {commentCount} |&nbsp;
+            Likes: {likeCount} | Dislikes: {dislikeCount} | Comments:{' '}
+            {commentCount} |&nbsp;
             <a
               href={`https://www.youtube.com/embed/${videoId}`}
               target="_blank"

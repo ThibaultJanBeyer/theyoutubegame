@@ -21,14 +21,16 @@ class Header extends Component {
         <section className="Header__container">
           <div className="Header__left">
             <div className="Header__logo-shadow" />
-            <Logo className="Header__logo" />
+            <Link to={LINKS.home} className="link">
+              <Logo className="Header__logo" />
+            </Link>
           </div>
           <div className="Header__right">
             {room ? (
-              <Link to={LINKS.mode} className="link">
+              <Link to={LINKS.home} className="link">
                 <FontAwesomeIcon
-                  icon="reply"
-                  title={`User: ${user.username}`}
+                  icon="door-open"
+                  title="leave room"
                   size="lg"
                 />
               </Link>
@@ -38,8 +40,8 @@ class Header extends Component {
             {user.username ? (
               <button className="link" type="button" onClick={this.handleUser}>
                 <FontAwesomeIcon
-                  icon="user-circle"
-                  title={`User: ${user.username}`}
+                  icon="sign-out-alt"
+                  title={`log out: ${user.username}`}
                   size="lg"
                 />
               </button>
