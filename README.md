@@ -2,6 +2,12 @@
 
 THE party game where you guess how many views a youtube video has!
 
+# Play
+
+Playable here:  
+https://www.theyoutubegame.net/
+have fun
+
 ## Party mode:
 
 1. open a private room
@@ -15,12 +21,6 @@ Is it popular or not? Your call!
 1. Join the "world" room
 2. Compete agains other players
 
-# Play
+## Feeling adventurous? Why don’t you join our team and start implementing cool stuf and make this game the #1 trending game.
 
-Playable here:  
-https://www.theyoutubegame.net/
-have fun
-
-# Feeling adventurous? Why don’t you join our team and start implementing cool stuf and make this game the #1 trending game.
-
-## Marketers are also welcome because I’m not that of a marketer. Also, anyone else that want to help.
+## Marketers are also welcome because I’m not a marketer. Also, anyone else who want to help.
