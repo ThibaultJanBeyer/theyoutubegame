@@ -8,7 +8,7 @@ import { putUser } from 'modules/user';
 class ConnectionHandler extends Component {
   componentDidMount() {
     const { syncRoom, putUser } = this.props;
-    this.socket = openSocket('http://localhost:8000/');
+    this.socket = openSocket(process.env.REACT_APP_HOST);
 
     this.socket.on('room/sync', data => syncRoom(data));
     this.socket.on('user/sync', data => putUser(data));

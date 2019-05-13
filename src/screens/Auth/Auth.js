@@ -54,7 +54,7 @@ class Auth extends Component {
     return (
       <article className="Auth paper center">
         <FontAwesomeIcon icon="user-circle" size="4x" />
-        <h1 className="Auth__title">Who are you?</h1>
+        <h1 className="Auth__title">What’s your name?</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="Auth__field">
             <label className="db" htmlFor="username">
