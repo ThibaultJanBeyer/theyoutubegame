@@ -8,7 +8,7 @@
   pointer-events: none;
 }
 
-.YouTubePlayer__overlay::before {
+.YouTubePlayer__overlay {
   content: '';
   position: absolute;
   top: 0;

@@ -12,6 +12,12 @@ export const ROOM_ERROR = 'tyg/room/ROOM_ERROR';
 // Reducer
 // -------
 
+// viewCount(pin): "72194"
+// likeCount(pin): "762"
+// dislikeCount(pin): "27"
+// favoriteCount(pin): "0"
+// commentCount(pin): "109"
+
 const initialState = {
   items: [],
   videoId: false,

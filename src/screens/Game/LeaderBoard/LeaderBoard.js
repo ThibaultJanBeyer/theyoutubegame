@@ -22,7 +22,12 @@ class LeaderBoard extends Component {
           &nbsp;
           {member.username} - {member.score}
           &nbsp;
-          <input type="checkbox" checked={member.guess} readOnly />
+          <input
+            type="checkbox"
+            checked={member.guess || false}
+            readOnly
+            value={member.guess || false}
+          />
         </li>
       );
     });

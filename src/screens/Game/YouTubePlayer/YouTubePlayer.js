@@ -13,6 +13,7 @@ class YouTubePlayer extends Component {
     console.log('ready');
     // https://developers.google.com/youtube/iframe_api_reference#playVideo
     this.player = event.target;
+    this.setState({ overlay: false });
   };
 
   render() {
@@ -29,7 +30,7 @@ class YouTubePlayer extends Component {
         iv_load_policy: 3,
         loop: 1,
         modestbranding: 1,
-        origin: window.location.origin,
+        // origin: window.location.origin,
         rel: 0,
         showinfo: 0,
       },
@@ -38,12 +39,15 @@ class YouTubePlayer extends Component {
     if (!videoId) return '';
 
     return (
-      <YouTube
-        className={`${overlay ? 'YouTubePlayer__overlay' : ''} YouTubePlayer`}
-        videoId={videoId}
-        opts={opts}
-        onReady={this.onReady}
-      />
+      <React.Fragment>
+        {overlay ? <div className="YouTubePlayer__overlay" /> : ''}
+        <YouTube
+          className="YouTubePlayer"
+          videoId={videoId}
+          opts={opts}
+          onReady={this.onReady}
+        />
+      </React.Fragment>
     );
   }
 }

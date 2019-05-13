@@ -1,5 +1,37 @@
 .Aftermath__video {
   width: 100%;
+  border: 0;
+}
+
+.Aftermath__video-container {
+  position: relative;
+}
+
+.Aftermath__video-views {
+  position: absolute;
+  background: white;
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  bottom: -20px;
+  left: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: rotate(-10deg);
+  animation: rotate 500ms ease-out 1;
+   box-shadow: var(--box-shadow);
+}
+
+@keyframes rotate {
+  0%{transform: rotate(360deg);}
+}
+
+.Aftermath__video-sub {
+  text-align: center;
+  display: block;
 }
 
 .Aftermath__views {

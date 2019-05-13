@@ -25,7 +25,7 @@ class Game extends Component {
     return (
       <article className="Game">
         <LeaderBoard />
-        {typeof videoStats === 'number' ? (
+        {videoStats ? (
           <React.Fragment>
             <Aftermath />
           </React.Fragment>
