@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './Game.css';
+import YouTubePlayer from './YouTubePlayer/YouTubePlayer';
 import Guess from './Guess/Guess';
+import Aftermath from './Aftermath/Aftermath';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 import { joinRoom, leaveRoom } from 'modules/room';
 
@@ -19,40 +21,28 @@ class Game extends Component {
   }
 
   render() {
-    const { controls, title, videoId } = this.props;
-    const videoNode = videoId ? (
-      <iframe
-        className="Game__video"
-        title="youtube-video"
-        width="100%"
-        height="100%"
-        frameBorder="0"
-        allow="autoplay"
-        src={`
-        https://www.youtube.com/embed/${videoId}
-          ?autoplay=1
-          ${!controls ? '&controls=0' : ''}
-          &rel=0
-          ${!title ? '&showinfo=0' : ''}
-      `.replace(/\s/g, '')}
-      />
-    ) : (
-      ''
-    );
-
+    const { videoStats } = this.props;
     return (
       <article className="Game">
         <LeaderBoard />
-        {videoNode}
-        <Guess />
+        {typeof videoStats === 'number' ? (
+          <React.Fragment>
+            <Aftermath />
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <YouTubePlayer />
+            <Guess />
+          </React.Fragment>
+        )}
       </article>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  videoId: state.room.videoId,
   user: state.user.item,
+  videoStats: state.room.videoStats,
 });
 
 const mapActionsToProps = {

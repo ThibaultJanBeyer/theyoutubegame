@@ -15,9 +15,11 @@ export const ROOM_ERROR = 'tyg/room/ROOM_ERROR';
 const initialState = {
   items: [],
   videoId: false,
+  videoStats: false,
+  points: false,
   roomId: false,
+  timeout: false,
   error: false,
-  loading: false,
   leaving: false,
 };
 
@@ -30,6 +32,9 @@ export default (state = initialState, action) => {
       ...state,
       items: action.payload.members,
       videoId: action.payload.videoId,
+      videoStats: action.payload.videoStats,
+      points: action.payload.points,
+      timeout: action.payload.timeout,
     };
 
   case JOIN_ROOM:

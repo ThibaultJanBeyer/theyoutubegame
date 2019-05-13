@@ -1,0 +1,14 @@
+.Countdown--alert {
+  animation: alert 500ms linear infinite;
+}
+
+@keyframes alert {
+  100%{
+    transform: scale(1.1, 1.1);
+    color: red;
+  }
+}
+
+.Countdown__title {
+  margin-right: 5px;
+}

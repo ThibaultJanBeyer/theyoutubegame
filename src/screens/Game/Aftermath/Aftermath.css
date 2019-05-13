@@ -1,0 +1,49 @@
+.Aftermath__video {
+  width: 100%;
+}
+
+.Aftermath__views {
+  font-size: 2rem;
+}
+
+.Aftermath__ranking {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+}
+
+.Aftermath__rank {
+  display: inline-block;
+  margin: var(--spacing);
+}
+
+.Aftermath__rank--1 {
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.Aftermath__rank--2 {
+  font-size: 1.3rem;
+  width: calc(50% - var(--spacing) * 2);
+}
+
+.Aftermath__rank--3 {
+  font-size: 1.2rem;
+  width: calc(50% - var(--spacing) * 2);
+}
+
+.LeaderBoard__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.LeaderBoard__color {
+  width: 20px;
+  height: 20px;
+  vertical-align: text-bottom;
+  display: inline-block;
+  border: 0;
+  box-sizing: border-box;
+}

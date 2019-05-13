@@ -7,7 +7,7 @@ class LeaderBoard extends Component {
   getMembersView() {
     const { members } = this.props;
     if (!members) return '';
-    const sorted = members.sort((a, b) => a.score > b.score);
+    const sorted = members.sort((a, b) => b.score - a.score);
     return sorted.map((member, i) => {
       if (!member.username) return '';
       return (

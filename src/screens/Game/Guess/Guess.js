@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { putUser } from 'modules/user';
 
+import Countdown from 'components/Countdown/Countdown';
 import './Guess.css';
 
 class Guess extends Component {
@@ -23,12 +24,15 @@ class Guess extends Component {
 
   render() {
     const { locked } = this.state;
+    const { timeout } = this.props;
+
     return (
       <section className="Guess paper">
         <h2 className="Guess__title">
           {locked ? 'Thank you!' : 'How many views has this video?'}
         </h2>
-        {locked ? 'waiting for other players' : ''}
+        {locked ? 'Waiting for other players ' : ''}
+        {locked && timeout ? <Countdown time={timeout / 1000} /> : ''}
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="guess" className="visually-hidden">
             Enter your guess:
@@ -45,7 +49,14 @@ class Guess extends Component {
             />
             {!locked ? (
               <button type="submit" className="button button--primary">
-                Submit
+                Submit{' '}
+                {timeout ? (
+                  <span className="typography--tiny">
+                    (<Countdown time={timeout / 1000} />)
+                  </span>
+                ) : (
+                  ''
+                )}
               </button>
             ) : (
               ''
@@ -59,6 +70,7 @@ class Guess extends Component {
 
 const mapStateToProps = state => ({
   user: state.user.item,
+  timeout: state.room.timeout,
 });
 
 const mapActionsToProps = {
