@@ -12,7 +12,7 @@
     "build": "REACT_APP_HOST=https://thibaultjanbeyer-theyoutubegame-server.glitch.me:8000/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postbuild": "cp -r build docs && cp docs/index.html docs/404.html"
+    "postbuild": "rm -r docs && cp -r build docs && cp docs/index.html docs/404.html"
   },
   "eslintConfig": {
     "extends": "react-app"
