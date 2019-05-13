@@ -63,7 +63,7 @@ class Aftermath extends Component {
             Likes: {likeCount} | Dislikes: {dislikeCount} | Comments:{' '}
             {commentCount} |&nbsp;
             <a
-              href={`https://www.youtube.com/embed/${videoId}`}
+              href={`https://www.youtube.com/watch?v=${videoId}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
