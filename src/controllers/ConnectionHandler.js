@@ -10,6 +10,10 @@ class ConnectionHandler extends Component {
     const { syncRoom, putUser } = this.props;
     this.socket = openSocket(process.env.REACT_APP_HOST);
 
+    this.socket.on('connect_error', function(data) {
+      console.log('connection_error', data);
+    });
+
     this.socket.on('room/sync', data => syncRoom(data));
     this.socket.on('user/sync', data => putUser(data));
 
