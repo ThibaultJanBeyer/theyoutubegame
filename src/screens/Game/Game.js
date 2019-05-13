@@ -6,7 +6,8 @@ import YouTubePlayer from './YouTubePlayer/YouTubePlayer';
 import Guess from './Guess/Guess';
 import Aftermath from './Aftermath/Aftermath';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
-import { joinRoom, leaveRoom } from 'modules/room';
+import Chat from 'components/Chat/Chat';
+import { joinRoom, leaveRoom, postMessage } from 'modules/room';
 
 class Game extends Component {
   componentDidMount() {
@@ -21,10 +22,19 @@ class Game extends Component {
   }
 
   render() {
-    const { videoStats } = this.props;
+    const { videoStats, user, chatMessages, postMessage } = this.props;
     return (
       <article className="Game">
         <LeaderBoard />
+        <Chat
+          messages={chatMessages}
+          onMessage={m =>
+            postMessage({
+              author: user,
+              text: m,
+            })
+          }
+        />
         {videoStats ? (
           <React.Fragment>
             <Aftermath />
@@ -43,11 +53,13 @@ class Game extends Component {
 const mapStateToProps = state => ({
   user: state.user.item,
   videoStats: state.room.videoStats,
+  chatMessages: state.room.chatMessages,
 });
 
 const mapActionsToProps = {
   joinRoom,
   leaveRoom,
+  postMessage,
 };
 
 export default connect(

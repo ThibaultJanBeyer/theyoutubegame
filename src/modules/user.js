@@ -1,6 +1,6 @@
 // Following the reDUCKS pattern https://github.com/erikras/ducks-modular-redux
 
-import { uuid } from 'utils/random';
+import { uuid, color } from 'utils/random';
 
 // -----
 // Types
@@ -75,6 +75,7 @@ export const loginUser = ({ username, password }) => async dispatch =>
     const user = {
       username,
       uuid: uuid(),
+      color: color(),
       role: 'user',
     };
     localStorage.setItem('user', JSON.stringify(user));

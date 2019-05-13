@@ -20,6 +20,7 @@ class Aftermath extends Component {
     const filtered = members.filter(user => user.guess && user.bonus);
     const sorted = filtered.sort((a, b) => b.bonus - a.bonus);
     const localUser = members.find(member => member.uuid === user.uuid);
+    if (!localUser) return;
 
     let message = `This video has ${viewCount} views. `;
     if (typeof localUser.guess !== 'number') {

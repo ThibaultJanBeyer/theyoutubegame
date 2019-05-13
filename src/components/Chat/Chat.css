@@ -1,0 +1,62 @@
+.Chat {
+  position: fixed;
+  top: 100%;
+  right: var(--spacing-xl);
+  background: white;
+  width: 200px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  z-index: 9999;
+  transform: translateY(calc(var(--spacing-xl) * -1));
+  transition: transform 250ms ease-in-out;
+}
+
+.Chat:not(.Chat--open):hover {
+  transform: translateY(calc(var(--spacing-xl) * -1.5));
+}
+
+.Chat--open {
+  transform: translateY(-100%);
+}
+
+.Chat__button {
+  width: 100%;
+  padding: var(--spacing) var(--spacing-xl);
+  border: 0;
+  background: transparent;
+  font-size: 1rem;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+}
+
+.Chat__button::after {
+  content: ' ▲';
+  vertical-align: super;
+  font-size: 0.5rem;
+  color: var(--color-primary);
+}
+
+.Chat--open .Chat__button::after {
+  content: ' ▼';
+}
+
+.Chat__content {
+  max-height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  word-break: break-word;
+}
+
+.Chat__message {
+  padding: var(--spacing);
+}
+
+.Chat__message:nth-child(2n) {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.Chat__name {
+  opacity: 0.5;
+  margin-right: var(--spacing);
+}

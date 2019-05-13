@@ -14,10 +14,10 @@ class LeaderBoard extends Component {
         <li key={i} data-uuid={member.id}>
           {i + 1}.&nbsp;
           <input
-            className="LeaderBoard__color"
+            className="input--color"
             type="color"
             value={member.color}
-            readOnly
+            disabled
           />
           &nbsp;
           {member.username} - {member.score}
@@ -25,7 +25,7 @@ class LeaderBoard extends Component {
           <input
             type="checkbox"
             checked={member.guess || false}
-            readOnly
+            disabled
             value={member.guess || false}
           />
         </li>

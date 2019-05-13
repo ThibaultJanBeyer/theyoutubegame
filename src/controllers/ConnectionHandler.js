@@ -25,6 +25,11 @@ class ConnectionHandler extends Component {
     this.socket.emit('user/sync', user);
   }
 
+  postMessage(roomId, chatMessage) {
+    console.log('sending message', chatMessage);
+    this.socket.emit('room/chat/message', { id: roomId, ...chatMessage });
+  }
+
   connect(id) {
     const { user } = this.props;
     this.socket.emit('room/join', { id, user });
@@ -35,7 +40,7 @@ class ConnectionHandler extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { roomId, leaving, user } = this.props;
+    const { roomId, leaving, user, chatMessage } = this.props;
     if (!this.socket) return;
     // Typical usage (don't forget to compare props):
     if (roomId !== prevProps.roomId) {
@@ -46,6 +51,9 @@ class ConnectionHandler extends Component {
     }
     if (user !== prevProps.user) {
       this.updateUser(user);
+    }
+    if (chatMessage !== prevProps.chatMessage) {
+      this.postMessage(roomId, chatMessage);
     }
   }
 
@@ -58,6 +66,7 @@ const mapStateToProps = state => ({
   roomId: state.room.roomId,
   leaving: state.room.leaving,
   user: state.user.item,
+  chatMessage: state.room.chatMessage,
 });
 
 const mapActionsToProps = {

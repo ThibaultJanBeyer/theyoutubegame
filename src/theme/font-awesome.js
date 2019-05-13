@@ -7,6 +7,7 @@ import {
   faReply,
   faDoorOpen,
   faSignOutAlt,
+  faComments,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add([
@@ -16,4 +17,5 @@ library.add([
   faReply,
   faDoorOpen,
   faSignOutAlt,
+  faComments,
 ]);

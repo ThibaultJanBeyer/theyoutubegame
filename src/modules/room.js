@@ -4,6 +4,7 @@
 export const JOIN_ROOM = 'tyg/room/JOIN_ROOM';
 export const LEAVE_ROOM = 'tyg/room/LEAVE_ROOM';
 export const SYNC_ROOM = 'tyg/room/SYNC_ROOM';
+export const POST_MESSAGE = 'tyg/room/POST_MESSAGE';
 
 export const ROOM_BEGIN = 'tyg/room/ROOM_BEGIN';
 export const ROOM_ERROR = 'tyg/room/ROOM_ERROR';
@@ -20,6 +21,8 @@ export const ROOM_ERROR = 'tyg/room/ROOM_ERROR';
 
 const initialState = {
   items: [],
+  chatMessages: [],
+  chatMessage: false,
   videoId: false,
   videoStats: false,
   points: false,
@@ -41,6 +44,7 @@ export default (state = initialState, action) => {
       videoStats: action.payload.videoStats,
       points: action.payload.points,
       timeout: action.payload.timeout,
+      chatMessages: action.payload.chatMessages,
     };
 
   case JOIN_ROOM:
@@ -55,6 +59,12 @@ export default (state = initialState, action) => {
       ...state,
       leaving: action.payload,
       roomId: false,
+    };
+
+  case POST_MESSAGE:
+    return {
+      ...state,
+      chatMessage: action.payload,
     };
 
   default:
@@ -83,5 +93,12 @@ export const syncRoom = data => {
   return {
     type: SYNC_ROOM,
     payload: data,
+  };
+};
+
+export const postMessage = data => {
+  return {
+    type: POST_MESSAGE,
+    payload: Object.assign({}, data),
   };
 };
