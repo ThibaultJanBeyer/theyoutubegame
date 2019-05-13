@@ -13,6 +13,7 @@ class YouTubePlayer extends Component {
     console.log('ready');
     // https://developers.google.com/youtube/iframe_api_reference#playVideo
     this.player = event.target;
+    this.player.playVideo();
   };
 
   onPlay = () => {
