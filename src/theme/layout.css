@@ -7,6 +7,15 @@
   --border-radius: 5px;
 }
 
+@media only screen and (max-width: 400px) {
+  :root {
+    --spacing-s: 2px;
+    --spacing: 5px;
+    --spacing-l: 10px;
+    --spacing-xl: 20px;
+  }
+}
+
 .paper {
   padding: var(--spacing-xl);
   box-shadow: var(--box-shadow);
