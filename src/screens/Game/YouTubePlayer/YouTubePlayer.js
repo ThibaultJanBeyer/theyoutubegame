@@ -13,6 +13,10 @@ class YouTubePlayer extends Component {
     console.log('ready');
     // https://developers.google.com/youtube/iframe_api_reference#playVideo
     this.player = event.target;
+    this.playVideo();
+  };
+
+  playVideo = () => {
     this.player.playVideo();
   };
 
@@ -51,6 +55,7 @@ class YouTubePlayer extends Component {
           opts={opts}
           onReady={this.onReady}
           onPlay={this.onPlay}
+          onEnd={this.playVideo}
         />
       </React.Fragment>
     );

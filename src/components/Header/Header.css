@@ -1,5 +1,6 @@
 .Header {
   padding: 10px;
+  position: relative;
 }
 
 .Header__container {

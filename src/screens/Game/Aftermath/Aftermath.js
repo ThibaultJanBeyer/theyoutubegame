@@ -17,7 +17,7 @@ class Aftermath extends Component {
     const dislikeCount = this.toLocale(videoStats.dislikeCount);
     const commentCount = this.toLocale(videoStats.commentCount);
 
-    const filtered = members.filter(user => user.guess && user.bonus);
+    const filtered = members.filter(user => user.bonus);
     const sorted = filtered.sort((a, b) => b.bonus - a.bonus);
     const localUser = members.find(member => member.uuid === user.uuid);
     if (!localUser) return;

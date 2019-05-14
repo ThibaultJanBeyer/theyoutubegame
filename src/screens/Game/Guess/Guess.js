@@ -16,7 +16,7 @@ class Guess extends Component {
     e.preventDefault();
     const { guess } = this.state;
     const { user, putUser } = this.props;
-    putUser(Object.assign({}, user, { guess: guess * 1 }));
+    putUser(Object.assign({}, user, { guess: +guess }));
     this.setState({
       locked: true,
     });

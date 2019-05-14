@@ -12,7 +12,13 @@ class LeaderBoard extends Component {
   };
 
   scrollToUser = () => {
-    if (this.user) this.user.scrollIntoView({ behavior: 'smooth' });
+    if (this.userNode) {
+      const counter = this.listNode.firstChild.offsetTop;
+      this.listNode.scrollTo({
+        top: this.userNode.offsetTop - counter,
+        behavior: 'smooth',
+      });
+    }
   };
 
   handleClick = () => {
@@ -25,13 +31,20 @@ class LeaderBoard extends Component {
   };
 
   getMembersView() {
-    const { members } = this.props;
+    const { members, user } = this.props;
     if (!members) return '';
     const sorted = members.sort((a, b) => b.score - a.score);
     return sorted.map((member, i) => {
       if (!member.username) return '';
       return (
-        <li key={i} data-uuid={member.id} className="LeaderBoard__item">
+        <li
+          key={i}
+          data-uuid={member.id}
+          className="LeaderBoard__item"
+          ref={el => {
+            if (member.uuid === user.uuid) this.userNode = el;
+          }}
+        >
           {i + 1}.&nbsp;
           <input
             className="input--color"
@@ -60,6 +73,7 @@ class LeaderBoard extends Component {
     return (
       <section
         className={`LeaderBoard paper ${open ? 'LeaderBoard--open' : ''}`}
+        onClick={open ? () => {} : this.handleClick}
       >
         <button
           type="button"
@@ -71,7 +85,14 @@ class LeaderBoard extends Component {
             &nbsp;Leaderboard
           </h2>
         </button>
-        <ol className="LeaderBoard__list">{this.getMembersView()}</ol>
+        <ol
+          className="LeaderBoard__list"
+          ref={el => {
+            this.listNode = el;
+          }}
+        >
+          {this.getMembersView()}
+        </ol>
       </section>
     );
   }
@@ -79,6 +100,7 @@ class LeaderBoard extends Component {
 
 const mapStateToProps = state => ({
   members: state.room.items,
+  user: state.user.item,
 });
 
 export default connect(

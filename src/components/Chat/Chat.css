@@ -1,19 +1,19 @@
 .Chat {
   position: fixed;
   top: 100%;
-  right: var(--spacing-xl);
+  right: 10px;
   background: white;
   width: 200px;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   z-index: 9999;
-  transform: translateY(calc(var(--spacing-xl) * -1));
+  transform: translateY(-25px);
   transition: transform 250ms ease-in-out;
 }
 
 .Chat:not(.Chat--open):hover {
-  transform: translateY(calc(var(--spacing-xl) * -1.5));
+  transform: translateY(-35px);
 }
 
 .Chat--open {

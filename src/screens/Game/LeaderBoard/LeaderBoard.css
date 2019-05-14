@@ -1,6 +1,5 @@
 .LeaderBoard {
   box-sizing: border-box;
-  max-height: 200px;
   max-width: 45px;
   overflow: hidden;
   position: absolute;
@@ -34,12 +33,16 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
-  padding: var(--spacing-xl);
-  width: 175px;
+  padding: var(--spacing-l);
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 200px;
+  box-sizing: border-box;
 }
 
 .LeaderBoard__username {
-  max-width: 70px;
+  max-width: 100px;
   margin-right: var(--spacing);
   text-overflow: ellipsis;
   overflow: hidden;

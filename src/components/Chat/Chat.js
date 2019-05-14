@@ -10,8 +10,8 @@ class Chat extends Component {
   };
 
   scrollToBottom = () => {
-    if (this.messagesEnd)
-      this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+    if (this.chatContent && this.chatContent.lastChild)
+      this.chatContent.lastChild.scrollIntoView({ behavior: 'smooth' });
   };
 
   handleClick = () => {
@@ -40,6 +40,13 @@ class Chat extends Component {
     });
   };
 
+  componentDidUpdate(prevProps) {
+    const { messages } = this.props;
+    if (messages.length !== prevProps.messages.length) {
+      this.scrollToBottom();
+    }
+  }
+
   render() {
     const { open, text } = this.state;
     const { messages } = this.props;
@@ -55,16 +62,15 @@ class Chat extends Component {
             &nbsp;Chat
           </h2>
         </button>
-        <div className="Chat__content">
+        <div
+          className="Chat__content"
+          ref={el => {
+            this.chatContent = el;
+          }}
+        >
           {messages &&
             messages.map((message, index) => (
-              <div
-                className="Chat__message"
-                key={index}
-                ref={el => {
-                  if (index === messages.length - 1) this.messagesEnd = el;
-                }}
-              >
+              <div className="Chat__message" key={index}>
                 <span className="Chat__name">
                   <input
                     className="input--color"
