@@ -1,14 +1,64 @@
 .LeaderBoard {
+  box-sizing: border-box;
   max-height: 200px;
-  overflow: auto;
+  max-width: 45px;
+  overflow: hidden;
   position: absolute;
   right: -15px;
   top: -15px;
+  transition: max-width 250ms ease-in-out;
+  white-space: nowrap;
   z-index: 1;
+  padding: 0;
+}
+
+.LeaderBoard:not(.LeaderBoard--open):hover {
+  max-width: 65px;
+}
+
+.LeaderBoard--open {
+  max-width: 300px;
+}
+
+.LeaderBoard__button {
+  background: transparent;
+  border: 0;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: var(--spacing-l) var(--spacing-xl);
+  width: 100%;
 }
 
 .LeaderBoard__list {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  padding: var(--spacing-xl);
+  width: 175px;
+}
+
+.LeaderBoard__username {
+  max-width: 70px;
+  margin-right: var(--spacing);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.LeaderBoard__title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.LeaderBoard__title::before {
+  content: '◀ ';
+  vertical-align: super;
+  font-size: 0.5rem;
+  color: var(--color-primary);
+}
+
+.LeaderBoard--open .LeaderBoard__title::before {
+  content: '▶ ';
 }

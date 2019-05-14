@@ -50,8 +50,10 @@ class Chat extends Component {
           className="Chat__button"
           onClick={this.handleClick}
         >
-          <FontAwesomeIcon icon="comments" />
-          &nbsp;Chat
+          <h2 className="Chat__title">
+            <FontAwesomeIcon icon="comments" />
+            &nbsp;Chat
+          </h2>
         </button>
         <div className="Chat__content">
           {messages &&

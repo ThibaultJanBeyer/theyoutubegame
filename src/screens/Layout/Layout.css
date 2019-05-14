@@ -10,8 +10,9 @@
   display: grid;
   grid-template-areas:
     'header'
-    'main';
-  grid-template-rows: auto 1fr;
+    'main'
+    'footer';
+  grid-template-rows: auto 1fr auto;
   box-sizing: border-box;
 }
 
@@ -24,4 +25,8 @@
   padding: 30px 25px;
   overflow: auto;
   box-sizing: border-box;
+}
+
+.footer {
+  grid-area: footer;
 }

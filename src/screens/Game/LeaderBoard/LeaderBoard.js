@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './LeaderBoard.css';
 
+const openSave = JSON.parse(window.localStorage.getItem('leaderboard'));
+
 class LeaderBoard extends Component {
+  state = {
+    open: openSave === undefined ? true : openSave,
+  };
+
+  scrollToUser = () => {
+    if (this.user) this.user.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  handleClick = () => {
+    const newState = !this.state.open;
+    window.localStorage.setItem('leaderboard', JSON.stringify(newState));
+    this.setState({
+      open: newState,
+    });
+    this.scrollToUser();
+  };
+
   getMembersView() {
     const { members } = this.props;
     if (!members) return '';
@@ -11,7 +31,7 @@ class LeaderBoard extends Component {
     return sorted.map((member, i) => {
       if (!member.username) return '';
       return (
-        <li key={i} data-uuid={member.id}>
+        <li key={i} data-uuid={member.id} className="LeaderBoard__item">
           {i + 1}.&nbsp;
           <input
             className="input--color"
@@ -19,8 +39,10 @@ class LeaderBoard extends Component {
             value={member.color}
             disabled
           />
-          &nbsp;
-          {member.username} - {member.score}
+          <span className="LeaderBoard__username" title={member.username}>
+            {member.username}
+          </span>
+          - {member.score}
           &nbsp;
           <input
             type="checkbox"
@@ -34,9 +56,21 @@ class LeaderBoard extends Component {
   }
 
   render() {
+    const { open } = this.state;
     return (
-      <section className="LeaderBoard paper">
-        <h2 className="visually-hidden">Leaderboard</h2>
+      <section
+        className={`LeaderBoard paper ${open ? 'LeaderBoard--open' : ''}`}
+      >
+        <button
+          type="button"
+          className="LeaderBoard__button"
+          onClick={this.handleClick}
+        >
+          <h2 className="LeaderBoard__title">
+            <FontAwesomeIcon icon="list-ol" />
+            &nbsp;Leaderboard
+          </h2>
+        </button>
         <ol className="LeaderBoard__list">{this.getMembersView()}</ol>
       </section>
     );

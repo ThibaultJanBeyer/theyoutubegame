@@ -1,6 +1,5 @@
-- [] add github link
 - [] when voting 0 "winner" result is not displayed
-- [] leaderboard is overlapping text on small screens
+- [] leaderboard should be a table
 - [] share link / challenge friends function (private and public)
 - [] skip aftermath
 - [] better AI (now always too high numbers, low numbers more likely)
