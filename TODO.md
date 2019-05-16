@@ -1,6 +1,12 @@
-- [] leaderboard should be a table
 - [] bonus points should reset on each round start
 - - [] when voting 0 "winner" result is displayed wrongly
-- [] share link / challenge friends function (private and public)
 - [] skip aftermath to next video
+- [] shorter aftermath
+- [] share link / challenge friends function (private and public)
 - [] better AI (now always too high numbers, low numbers more likely)
+- [] leaderboard should be a table
+
+- [] Winning animation
+- [] Rare video GEM animation
+- [] More popular videos
+- [] More US videos
