@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { putUser } from 'modules/user';
 
 import Countdown from 'components/Countdown/Countdown';
 import './Aftermath.css';
@@ -7,6 +8,11 @@ import './Aftermath.css';
 class Aftermath extends Component {
   toLocale(number = 0) {
     return parseFloat(parseInt(number)).toLocaleString(navigator.language);
+  }
+
+  handleSkip() {
+    const { user, putUser } = this.props;
+    putUser(Object.assign({}, user, { guess: false, bonus: false }));
   }
 
   render() {
@@ -40,6 +46,9 @@ class Aftermath extends Component {
           {timeout ? (
             <React.Fragment>
               &nbsp;Next round in <Countdown time={timeout / 1000} />
+              <button className="button button--primary" onClick={this.handleSkip}>
+                skip
+              </button>
             </React.Fragment>
           ) : (
             ''
@@ -100,7 +109,11 @@ const mapStateToProps = state => ({
   videoId: state.room.videoId,
 });
 
+const mapActionsToProps = {
+putUser
+}
+
 export default connect(
   mapStateToProps,
-  null
+  mapActionsToProps
 )(Aftermath);

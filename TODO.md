@@ -1,9 +1,5 @@
-- [] bonus points should reset on each round start
-- - [] when voting 0 "winner" result is displayed wrongly
 - [] skip aftermath to next video
-- [] shorter aftermath
 - [] share link / challenge friends function (private and public)
-- [] better AI (now always too high numbers, low numbers more likely)
 - [] leaderboard should be a table
 
 - [] Winning animation
