@@ -20,3 +20,17 @@
   background-color: var(--color-primary);
   color: white;
 }
+
+.button[disabled] {
+  opacity: 0.8;
+  background-color: var(--color-grey);
+  color: black;
+  cursor: not-allowed;
+}
+
+.button[disabled]:hover,
+.button[disabled]:focus,
+.button[disabled]:active {
+  background-color: var(--color-grey);
+  color: black;
+}

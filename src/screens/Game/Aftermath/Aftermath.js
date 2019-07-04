@@ -45,9 +45,12 @@ class Aftermath extends Component {
           Aftermath.
           {timeout ? (
             <React.Fragment>
-              &nbsp;Next round in <Countdown time={timeout / 1000} />
-              <button className="button button--primary" onClick={this.handleSkip}>
-                skip
+              &nbsp;
+              <button 
+                className="button button--primary"
+                onClick={this.handleSkip}
+                disabled={user.skip}>
+                Skip waiting <Countdown time={timeout / 1000} />
               </button>
             </React.Fragment>
           ) : (

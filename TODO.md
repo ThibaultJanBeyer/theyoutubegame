@@ -1,4 +1,3 @@
-- [] skip aftermath to next video
 - [] share link / challenge friends function (private and public)
 - [] leaderboard should be a table
 
