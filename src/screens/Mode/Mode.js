@@ -53,7 +53,7 @@ class Mode extends Component {
               onClick={() => this.handleSelection('private')}
             >
               <FontAwesomeIcon icon="users" className="Mode__icon" />
-              Private
+              Private Party
             </button>
           </li>
         </ul>
