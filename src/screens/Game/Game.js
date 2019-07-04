@@ -36,9 +36,7 @@ class Game extends Component {
           }
         />
         {videoStats ? (
-          <React.Fragment>
-            <Aftermath />
-          </React.Fragment>
+          <Aftermath />
         ) : (
           <React.Fragment>
             <YouTubePlayer />

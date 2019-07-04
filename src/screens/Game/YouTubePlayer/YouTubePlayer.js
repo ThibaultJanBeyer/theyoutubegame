@@ -10,7 +10,6 @@ class YouTubePlayer extends Component {
   };
 
   onReady = event => {
-    console.log('ready');
     // https://developers.google.com/youtube/iframe_api_reference#playVideo
     this.player = event.target;
     this.playVideo();
@@ -21,8 +20,13 @@ class YouTubePlayer extends Component {
   };
 
   onPlay = () => {
-    setTimeout(() => this.setState({ overlay: false }), 4000);
+    setTimeout(() => this.setState({ overlay: false }), 5000);
   };
+
+  copy(event) {
+    event.target.select();
+    document.execCommand('copy');
+  }
 
   render() {
     const { videoId } = this.props;
@@ -48,7 +52,24 @@ class YouTubePlayer extends Component {
 
     return (
       <React.Fragment>
-        {overlay ? <div className="YouTubePlayer__overlay">Loading…</div> : ''}
+        {overlay ? (
+          <div className="YouTubePlayer__overlay">
+            <div>
+              Loading…
+              <br />
+              Share the link with your friends:
+              <br />
+              <input
+                type="text"
+                className="input db"
+                value={window.location.href}
+                onClick={this.copy}
+              />
+            </div>
+          </div>
+        ) : (
+          ''
+        )}
         <YouTube
           className="YouTubePlayer"
           videoId={videoId}

@@ -12,7 +12,7 @@ import NotFound from 'screens/NotFound/NotFound';
 export const LINKS = {
   home: '/',
   mode: '/mode',
-  game: '/game',
+  game: '/g',
   auth: '/auth',
 };
 

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Redirect } from 'react-router-dom';
 
 import { wordId } from 'utils/random';
+import { LINKS } from 'Routes';
 
 import './Mode.css';
 
@@ -26,7 +27,7 @@ class Mode extends Component {
         <Redirect
           push
           to={{
-            pathname: `game/${id}`,
+            pathname: `${LINKS.game}/${id}`,
           }}
         />
       );

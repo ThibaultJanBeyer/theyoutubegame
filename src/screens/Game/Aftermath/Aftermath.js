@@ -18,7 +18,7 @@ class Aftermath extends Component {
   handleSkip = () => {
     const { user, putUser } = this.props;
     putUser(Object.assign({}, user, { skip: true }));
-  }
+  };
 
   render() {
     const { user, members, videoStats, videoId, points, timeout } = this.props;
@@ -31,7 +31,7 @@ class Aftermath extends Component {
     const filtered = members.filter(user => user.bonus);
     const sorted = filtered.sort((a, b) => b.bonus - a.bonus);
     const localUser = members.find(member => member.uuid === user.uuid);
-    if (!localUser) return;
+    if (!localUser) return '';
 
     let message = `This video has ${viewCount} views. `;
     if (typeof localUser.guess !== 'number') {
@@ -51,10 +51,11 @@ class Aftermath extends Component {
           {timeout ? (
             <React.Fragment>
               &nbsp;
-              <button 
+              <button
                 className="button button--primary"
                 onClick={this.handleSkip}
-                disabled={user.skip}>
+                disabled={user.skip}
+              >
                 Skip waiting <Countdown time={timeout / 1000} />
               </button>
             </React.Fragment>
@@ -118,8 +119,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-putUser
-}
+  putUser,
+};
 
 export default connect(
   mapStateToProps,
