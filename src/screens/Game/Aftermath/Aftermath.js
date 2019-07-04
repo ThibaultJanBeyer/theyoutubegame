@@ -10,6 +10,11 @@ class Aftermath extends Component {
     return parseFloat(parseInt(number)).toLocaleString(navigator.language);
   }
 
+  componentDidMount() {
+    const { user, putUser } = this.props;
+    putUser(Object.assign({}, user, { skip: false }));
+  }
+
   handleSkip = () => {
     const { user, putUser } = this.props;
     putUser(Object.assign({}, user, { skip: true }));
