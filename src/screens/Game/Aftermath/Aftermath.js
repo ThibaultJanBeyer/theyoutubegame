@@ -89,6 +89,16 @@ class Aftermath extends Component {
             </a>
           </span>
           <p>{message}</p>
+          <p>
+            Share the link with your friends:
+            &nbsp;
+            <input
+              type="text"
+              className="input"
+              value={window.location.href}
+              onClick={this.copy}
+            />
+          </p>
           <h2>Ranking:</h2>
           <ol className="Aftermath__ranking">
             {sorted.map((member, index) => (
